@@ -1,0 +1,62 @@
+{% extends 'common/base.html' %}
+
+{% block content %}
+
+{{ render_menu('drafting')|safe }}
+
+
+<h2 class="mt-3">View Locks</h2>
+<p>
+    Lock or Unlock all views in all sheets. "Main View" and "Background View" are
+    ignored unless explicitly selected.
+</p>
+
+<form
+        class="row row-cols-lg-auto align-items-center"
+        hx-post="/htmx/drafting/locking"
+        hx-target="#locking"
+        hx-swap="innerHtml"
+>
+    <div class="col-12">
+        <div class="input-group">
+            <button name="locker" class="btn btn-primary rounded-1 m-2" value="lock">Lock Views</button>
+            <button name="locker" class="btn btn-primary rounded-1 m-2" value="unlock">Unlock Views</button>
+        </div>
+        <div class="form-check">
+            <input name="includeMainViewLock" value="True" class="form-check-input" type="checkbox" value="" id="includeMainViewLock">
+            <label class="form-check-label" for="includeMainViewLock">
+                include Main View
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="includeBackgroundViewLock" value="True" class="form-check-input" type="checkbox" value="" id="includeBackgroundViewLock">
+            <label class="form-check-label" for="includeBackgroundViewLock">
+                include Background View
+            </label>
+        </div>
+    </div>
+</form>
+<div id="locking"></div>
+
+<h2 class="mt-3">View Frames</h2>
+<p>
+    Turn off or on View Frames. Only Views that are unlocked will be processed.
+</p>
+
+<form
+        class="row row-cols-lg-auto align-items-center"
+        hx-post="/htmx/drafting/frames"
+        hx-target="#frames"
+        hx-swap="innerHtml"
+>
+    <div class="col-12">
+        <div class="input-group">
+            <button name="framer" class="btn btn-primary rounded-1 m-2" value="on">Frame On</button>
+            <button name="framer" class="btn btn-primary rounded-1 m-2" value="off">Frame Off</button>
+        </div>
+    </div>
+</form>
+<div id="frames"></div>
+
+{% endblock %}
+

@@ -1,0 +1,29 @@
+<p class="alert alert-warning">
+    Only the first 100 points will be displayed. Please see CSV file or CATPart
+    for the complete data set.
+</p>
+{% if file_name %}
+<p class="alert alert-info">
+    CSV file <span class="font-monospace">{{ file_name }}</span> created.
+</p>
+{% endif %}
+<table class="table">
+    <thead>
+    <tr>
+        <th>Point Name</th>
+        <th>X</th>
+        <th>Y</th>
+        <th>Z</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for item in data %}
+    <tr>
+        <td>{{ item }}</td>
+        <td>{{ data[item][0] }}</td>
+        <td>{{ data[item][1] }}</td>
+        <td>{{ data[item][2] }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
