@@ -1,8 +1,8 @@
-from flask import render_template
 from flask import request
 
 from application import app
 from application.pycatia_scripts.part.points_import import import_points
+from application.support.template import render_template
 from application.views.url_prefixes import htmx
 
 

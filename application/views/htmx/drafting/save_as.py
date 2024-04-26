@@ -1,7 +1,7 @@
-from flask import render_template
 from flask import request
 
 from application import app
+from application.support.template import render_template
 from application.views.url_prefixes import htmx
 from application.pycatia_scripts.drafting.save_drawing import save_as
 

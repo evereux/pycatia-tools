@@ -1,6 +1,5 @@
-from flask import render_template
-
 from application import app
+from application.support.template import render_template
 from application.pycatia_scripts.part.bounding_box import create_bounding_box
 from application.views.url_prefixes import htmx
 

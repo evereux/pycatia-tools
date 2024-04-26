@@ -1,9 +1,5 @@
-from flask import render_template
-from pycatia.exception_handling.exceptions import CATIAApplicationException
-
 from application import app
-from application.pycatia_scripts.the_document import PTActiveDocument
-from application.pycatia_scripts.the_document import PTPartDocument
+from application.support.template import render_template
 from application.views.view_wrappers import catia_v5_required
 
 
