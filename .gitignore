@@ -160,7 +160,6 @@ cython_debug/
 .idea/
 
 __catia__files__
-.flaskenv
 ThePoints*
 test*.py
 build.bat
