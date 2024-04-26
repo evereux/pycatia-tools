@@ -1,3 +1,22 @@
-<p class="alert alert-success">
-    {{ data }}
-</p>
+<div class="alert alert-success mt-2">
+    {% if data is mapping %}
+
+        <ul>
+            {% for item in data %}
+                    <li>{{ item }}</li>
+                {% if data[item] is iterable %}
+                    <ul>
+                    {% for item_1 in data[item] %}
+                        <li>{{ item_1 }}</li>
+                    {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endfor %}
+        </ul>
+
+    {% else %}
+
+        {{ data }} lall
+
+    {% endif %}
+</div>

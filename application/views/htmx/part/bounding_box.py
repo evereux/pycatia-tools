@@ -22,4 +22,4 @@ def htmx_bounding_box():
                 f'Z={ data["z"] }.'
                 f'</p>')
 
-    return '<p class="alert alert-danger mt-3">There was a problem.</p>'
+    return render_template('partials/error.html')

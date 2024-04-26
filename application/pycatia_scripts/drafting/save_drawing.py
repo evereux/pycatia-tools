@@ -24,7 +24,7 @@ def save_as(exclude_sheets: str = None, target_directory: str = None):
     try:
         pt_drawing_document = PTDrawingDocument()
         if not pt_drawing_document.is_drafting_document():
-            output['errors'].append('Active document is not .CATDrawing.')
+            output['errors'].append('Active document is not CATPart.')
             return output
     except CATIAApplicationException:
         output['errors'].append('No active document.')

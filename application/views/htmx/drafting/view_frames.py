@@ -1,6 +1,7 @@
 from flask import request
 
 from application import app
+from application.support.template import render_template
 from application.views.url_prefixes import htmx
 from application.pycatia_scripts.drafting.view_frames import view_framer
 
@@ -14,9 +15,16 @@ def htmx_drafting_framing():
     else:
         frame = False
 
-    r = view_framer(frame)
+    output = view_framer(frame)
+    data = output['data']
+    errors = output['errors']
 
-    if r:
-        return '<p class="alert alert-success">Frame request processed!</p>'
-    else:
-        return '<p class="alert alert-warning">The was a problem.</p>'
+    print(output)
+
+    if errors:
+        return render_template('partials/errors.html', errors=errors)
+
+    if data:
+        return render_template('partials/success.html', data=data)
+
+    return render_template('partials/error.html')

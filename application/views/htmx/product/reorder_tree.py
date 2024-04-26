@@ -1,5 +1,6 @@
 from application import app
 from application.pycatia_scripts.product.tree import reorder_tree
+from application.support.template import render_template
 from application.views.url_prefixes import htmx
 
 
@@ -10,4 +11,5 @@ def htmx_reorder_tree():
 
     if r:
         return '<p class="alert alert-success">Product Tree has been reordered.</p>'
-    return '<p class="alert alert-warning>There was a problem.</p>'
+
+    return render_template('partials/error.html')

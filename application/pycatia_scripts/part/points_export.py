@@ -33,7 +33,7 @@ def export_points(geometric_set: str, file_name: str, target_directory: str) -> 
     except CATIAApplicationException:
         output['errors'].append('No active document.')
     except AttributeError:
-        output['errors'].append('No active document or active document is not a .CATPart.')
+        output['errors'].append('No active document or active document is not a CATPart.')
 
     if output['errors']:
         return output

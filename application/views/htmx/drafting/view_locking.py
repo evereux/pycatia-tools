@@ -1,6 +1,7 @@
 from flask import request
 
 from application import app
+from application.support.template import render_template
 from application.views.url_prefixes import htmx
 from application.pycatia_scripts.drafting.view_locking import view_locker
 
@@ -16,13 +17,14 @@ def htmx_drafting_locking():
     else:
         lock = False
 
-    r = view_locker(lock, inc_main_view, inc_background_view)
+    output = view_locker(lock, inc_main_view, inc_background_view)
+    data = output['data']
+    errors = output['errors']
 
-    if r:
-        message = 'Views Unlocked!'
-        if lock:
-            message = 'Views Locked!'
+    if errors:
+        return render_template('partials/errors.html', errors=errors)
 
-        return f'<p class="alert alert-success">{message}</p>'
-    else:
-        return '<p class="alert alert-warning">The was a problem.</p>'
+    if data:
+        return render_template('partials/success.html', data=data)
+
+    return render_template('partials/error.html')

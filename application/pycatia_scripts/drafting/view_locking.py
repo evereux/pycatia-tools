@@ -1,23 +1,34 @@
+from pycatia.exception_handling import CATIAApplicationException
+
 from application.pycatia_scripts.the_document import PTDrawingDocument
 
 
-def view_locker(lock: bool, lock_main: bool, lock_background: bool) -> bool:
+def view_locker(lock: bool, lock_main: bool, lock_background: bool) -> dict:
     """
 
-    :param bool lock:
-    :param bool lock_main:
-    :param bool lock_background:
-    :return:
     """
 
-    pt_drawing_document = PTDrawingDocument()
+    output = {
+        'errors': [],
+        'data': {},
+    }
 
-    if not pt_drawing_document.is_drafting_document():
-        return False
+    try:
+        pt_drawing_document = PTDrawingDocument()
+        if not pt_drawing_document.is_drafting_document():
+            output['errors'].append('Active document is not a CATDrawing.')
+    except CATIAApplicationException:
+        output['errors'].append('No active document.')
+    except AttributeError:
+        output['errors'].append('No active document or active document is not a CATDrawing.')
+
+    if output['errors']:
+        return output
 
     sheets = pt_drawing_document.drawing_document.sheets
 
     for sheet in sheets:
+        output['data'][sheet.name] = []
         views = sheet.views
         if not sheet.is_detail():
             for view in views:
@@ -28,4 +39,6 @@ def view_locker(lock: bool, lock_main: bool, lock_background: bool) -> bool:
                 # print(f"\tProcessing view: {view.name}")
                 view.lock_status = lock
 
-    return True
+                output['data'][sheet.name].append(f'{view.name} {'Locked' if lock else 'Unlocked'}')
+
+    return output

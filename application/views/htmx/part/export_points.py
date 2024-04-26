@@ -24,4 +24,4 @@ def htmx_export_points():
     if data:
         return render_template('partials/point_table.html', data=data, file_name=file_name)
 
-    return '<p class="alert alert-danger mt-3">There was a problem.</p>'
+    return render_template('partials/error.html')

@@ -61,7 +61,7 @@ def import_points(geometric_set: str, files: ImmutableMultiDict):
     except CATIAApplicationException:
         output['errors'].append('No active document.')
     except AttributeError:
-        output['errors'].append('No active document or active document is not a .CATPart.')
+        output['errors'].append('No active document or active document is not a CATPart.')
 
     if not geometric_set:
         output['errors'].append('Please provide name of Geometric Set containing points.')

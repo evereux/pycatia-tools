@@ -2,6 +2,7 @@ from flask import request
 
 from application import app
 from application.pycatia_scripts.part.new_part import create_new_part
+from application.support.template import render_template
 from application.views.url_prefixes import htmx
 
 
@@ -18,4 +19,4 @@ def htmx_create_new_part():
     if r:
         return '<p class="alert alert-success">New Part created.</p>'
 
-    return '<p class="alert alert-warning>There was a problem.</p>'
+    return render_template('partials/error.html')

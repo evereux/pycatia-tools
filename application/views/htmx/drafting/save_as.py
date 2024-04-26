@@ -22,4 +22,4 @@ def htmx_drafting_save_as():
     if data:
         return render_template('partials/success.html', data=data)
 
-    return '<p class="alert alert-warning">There was a problem.</p>'
+    return render_template('partials/error.html')

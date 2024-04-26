@@ -19,7 +19,7 @@ def create_bounding_box():
     except CATIAApplicationException:
         output['errors'].append('No active document.')
     except AttributeError:
-        output['errors'].append('No active document or active document is not a .CATPart.')
+        output['errors'].append('No active document or active document is not a CATPart.')
 
     if output['errors']:
         return output
