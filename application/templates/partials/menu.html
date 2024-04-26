@@ -1,0 +1,7 @@
+<h1 class="text-center">{{ m_dict['title'] }}</h1>
+
+<p class="text-center">
+{%- for item in m_dict['menu_items'] -%}
+    <a class="btn btn-primary btn-sm m-1" href="{{ item['url'] }}">{{ item['title'] }}</a>
+{%- endfor -%}
+</p>

@@ -1,0 +1,16 @@
+{% extends 'common/base.html' %}
+{% block title %}Page Not Found{% endblock %}
+
+{% block content %}
+
+<h1 class="alert alert-warning text-center">404 ERROR</h1>
+
+    <p class="alert alert-warning">
+        This page does not exist.
+    </p>
+    <p class="alert alert-information">
+        {{ error }}
+    </p>
+
+
+{% endblock %}

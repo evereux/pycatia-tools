@@ -1,0 +1,12 @@
+{% extends 'common/base.html' %}
+{% block title %}Unexpected error.{% endblock %}
+
+{% block content %}
+
+    <h1 class="alert alert-warning text-center">500 ERROR</h1>
+
+    <p class="alert alert-warning">
+        {{ error }}
+    </p>
+
+{% endblock %}
