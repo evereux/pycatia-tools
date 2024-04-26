@@ -34,6 +34,10 @@ with app.app_context():
                 'url': url_for('product_reorder'),
                 'title': 'Reorder Product Tree'
             },
+            {
+                'url': url_for('product_attributes'),
+                'title': 'Edit Product Attributes'
+            },
         ]
     }
 

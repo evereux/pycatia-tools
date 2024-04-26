@@ -6,6 +6,7 @@ from pycatia.enumeration.enumeration_types import geometrical_feature_type
 from pycatia.exception_handling.exceptions import CATIAApplicationException
 
 from application.pycatia_scripts.the_document import PTPartDocument
+from application.support.documents import get_part_document
 
 
 def export_points(geometric_set: str, file_name: str, target_directory: str) -> {}:
@@ -28,12 +29,9 @@ def export_points(geometric_set: str, file_name: str, target_directory: str) -> 
     if not Path(target_directory).is_dir():
         output['errors'].append(f'"{target_directory}" is not a directory.')
 
-    try:
-        pt_part_document = PTPartDocument()
-    except CATIAApplicationException:
-        output['errors'].append('No active document.')
-    except AttributeError:
-        output['errors'].append('No active document or active document is not a CATPart.')
+    pt_part_document, errors = get_part_document()
+
+    output['errors'] = output['errors'] + errors
 
     if output['errors']:
         return output

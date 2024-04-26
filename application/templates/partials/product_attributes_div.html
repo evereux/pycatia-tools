@@ -1,0 +1,25 @@
+{% set label = 'col-2 text-end text-muted small' %}
+
+<div hx-target="this" hx-swap="outerHTML">
+    <div class="row mt-2">
+        <div class="{{ label }}">Part Number</div>
+        <div class="col">{{ attributes['part_number'] }}</div>
+    </div>
+    <div class="row mt-2">
+        <div class="{{ label }}">Revision</div>
+        <div class="col">{{ attributes['revision'] }}</div>
+    </div>
+    <div class="row mt-2">
+        <div class="{{ label }}">Definition</div>
+        <div class="col">{{ attributes['definition'] }}</div>
+    </div>
+    <div class="row mt-2">
+        <div class="{{ label }}">Nomenclature</div>
+        <div class="col">{{ attributes['nomenclature'] }}</div>
+    </div>
+    <div class="text-center mt-2">
+        <button class="btn btn-primary" hx-get="/htmx/product/attributes/edit">
+            Click To Edit
+        </button>
+    </div>
+</div>

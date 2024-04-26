@@ -8,6 +8,7 @@ from werkzeug.datastructures import ImmutableMultiDict
 from werkzeug.utils import secure_filename
 
 from application.pycatia_scripts.the_document import PTPartDocument
+from application.support.documents import get_part_document
 from application.support.files import allowed_file
 
 
@@ -56,12 +57,8 @@ def import_points(geometric_set: str, files: ImmutableMultiDict):
     else:
         output['errors'].append('There was a problem with the file.')
 
-    try:
-        pt_part_document = PTPartDocument()
-    except CATIAApplicationException:
-        output['errors'].append('No active document.')
-    except AttributeError:
-        output['errors'].append('No active document or active document is not a CATPart.')
+    pt_part_document, errors = get_part_document()
+    output['errors'] = output['errors'] + errors
 
     if not geometric_set:
         output['errors'].append('Please provide name of Geometric Set containing points.')

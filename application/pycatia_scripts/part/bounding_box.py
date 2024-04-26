@@ -5,6 +5,7 @@ from pycatia.mec_mod_interfaces.axis_system import AxisSystem
 from pycatia.sketcher_interfaces.geometry_2D import Geometry2D
 
 from application.pycatia_scripts.the_document import PTPartDocument
+from application.support.documents import get_part_document
 
 
 def create_bounding_box():
@@ -14,12 +15,9 @@ def create_bounding_box():
         'output_file': None
     }
 
-    try:
-        pt_part_document = PTPartDocument()
-    except CATIAApplicationException:
-        output['errors'].append('No active document.')
-    except AttributeError:
-        output['errors'].append('No active document or active document is not a CATPart.')
+    pt_part_document, errors = get_part_document()
+
+    output['errors'] = output['errors'] + errors
 
     if output['errors']:
         return output
