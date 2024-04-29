@@ -29,6 +29,7 @@ def view_framer(display: bool) -> dict:
         views = sheet.views
         for view in views:
             view.frame_visualization = display
-            output['data'][sheet.name].append(f'{view.name} {'Frame on' if display else 'Frame off'}')
+            state = 'Frame on' if view.frame_visualization else 'Frame off'
+            output['data'][sheet.name].append(f'{view.name} {state}')
 
     return output
