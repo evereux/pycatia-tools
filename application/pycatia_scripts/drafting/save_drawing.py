@@ -3,10 +3,10 @@ from pathlib import Path
 import random
 import string
 
-from pycatia.exception_handling.exceptions import CATIAApplicationException
 from pypdf import PdfWriter
 
-from application.pycatia_scripts.the_document import PTDrawingDocument
+from application.pycatia_scripts.common import output
+from application.support.documents import get_drawing_document
 
 
 def random_str(length: int = 8):
@@ -16,19 +16,7 @@ def random_str(length: int = 8):
 
 def save_as(exclude_sheets: str = None, target_directory: str = None):
 
-    output = {
-        'errors': [],
-        'data': None,
-    }
-
-    try:
-        pt_drawing_document = PTDrawingDocument()
-        if not pt_drawing_document.is_drafting_document():
-            output['errors'].append('Active document is not CATPart.')
-            return output
-    except CATIAApplicationException:
-        output['errors'].append('No active document.')
-        return output
+    pt_drawing_document, errors = get_drawing_document()
 
     if not target_directory:
         target_directory = os.path.join(os.path.join(os.environ['USERPROFILE']), 'Desktop')
