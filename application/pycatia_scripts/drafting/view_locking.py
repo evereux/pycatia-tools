@@ -38,7 +38,7 @@ def view_locker(lock: bool, lock_main: bool, lock_background: bool) -> dict:
                     continue
                 # print(f"\tProcessing view: {view.name}")
                 view.lock_status = lock
-
-                output['data'][sheet.name].append(f'{view.name} {'Locked' if lock else 'Unlocked'}')
+                state = 'Locked' if lock else 'Unlocked'
+                output['data'][sheet.name].append(f'{view.name} {state}')
 
     return output
