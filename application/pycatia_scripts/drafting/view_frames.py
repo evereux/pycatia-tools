@@ -11,6 +11,11 @@ def view_framer(display: bool) -> dict:
     """
     pt_drawing_document, errors = get_drawing_document()
 
+    output['errors'] = output['errors'] + errors
+
+    if output['errors']:
+        return output
+
     sheets = pt_drawing_document.drawing_document.sheets
 
     for sheet in sheets:

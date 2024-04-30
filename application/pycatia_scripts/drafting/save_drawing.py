@@ -18,6 +18,8 @@ def save_as(exclude_sheets: str = None, target_directory: str = None):
 
     pt_drawing_document, errors = get_drawing_document()
 
+    output['errors'] = output['errors'] + errors
+
     if not target_directory:
         target_directory = os.path.join(os.path.join(os.environ['USERPROFILE']), 'Desktop')
 
