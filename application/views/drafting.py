@@ -25,3 +25,11 @@ def drafting_save_as():
     return render_template(
         'drafting_save_as.html',
     )
+
+
+@app.route('/drafting/insert_template')
+@catia_v5_required
+def drafting_insert_template():
+    return render_template(
+        'drafting_template.html',
+    )
