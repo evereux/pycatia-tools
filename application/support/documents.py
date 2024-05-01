@@ -1,3 +1,5 @@
+from typing import List, Tuple
+
 from pycatia.exception_handling import CATIAApplicationException
 
 from application.pycatia_scripts.the_document import PTDrawingDocument
@@ -6,7 +8,7 @@ from application.pycatia_scripts.the_document import PTPartDocument
 from application.pycatia_scripts.the_document import PTProductDocument
 
 
-def get_part_document() -> (PTPartDocument | None, list):
+def get_part_document() -> Tuple[PTPartDocument | None, List]:
     errors = []
     pt_part_document = None
     try:
@@ -21,7 +23,7 @@ def get_part_document() -> (PTPartDocument | None, list):
     return pt_part_document, errors
 
 
-def get_drawing_document() -> (PTDrawingDocument | None, list):
+def get_drawing_document() -> Tuple[PTDrawingDocument | None, List]:
     errors = []
     pt_drawing_document = None
     try:
@@ -36,7 +38,7 @@ def get_drawing_document() -> (PTDrawingDocument | None, list):
     return pt_drawing_document, errors
 
 
-def get_product_document() -> (PTProductDocument, list):
+def get_product_document() -> Tuple[PTProductDocument | None, List]:
     errors = []
     pt_product_document = None
     try:

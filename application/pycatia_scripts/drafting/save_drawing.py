@@ -14,7 +14,7 @@ def random_str(length: int = 8):
     return ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(length))
 
 
-def save_as(exclude_sheets: str = None, target_directory: str = None):
+def save_as(exclude_sheets: str | None = None, target_directory: str | None = None):
 
     pt_drawing_document, errors = get_drawing_document()
 

@@ -7,6 +7,7 @@ from pycatia.exception_handling.exceptions import CATIAApplicationException
 from werkzeug.datastructures import ImmutableMultiDict
 from werkzeug.utils import secure_filename
 
+from application.pycatia_scripts.common import output
 from application.pycatia_scripts.the_document import PTPartDocument
 from application.support.documents import get_part_document
 from application.support.files import allowed_file
@@ -30,11 +31,6 @@ def import_points(geometric_set: str, files: ImmutableMultiDict):
     """
 
     """
-
-    output = {
-        'errors': [],
-        'data': {},
-    }
 
     if 'file' not in files:
         output['errors'].append('Missing file input.')
@@ -79,7 +75,7 @@ def import_points(geometric_set: str, files: ImmutableMultiDict):
 
     # create_points(part, file_name, 'mm', geometric_set, )
     point_data = []
-    data = {}
+    data = dict
     # read the csv file into memory.
     with open(target_file) as file:
         csv_file = csv.reader(file, delimiter=",")

@@ -9,7 +9,7 @@ from application.pycatia_scripts.common import output
 from application.support.documents import get_part_document
 
 
-def export_points(geometric_set: str, file_name: str, target_directory: str) -> {}:
+def export_points(geometric_set: str, file_name: str, target_directory: str) -> dict:
     """
 
     """

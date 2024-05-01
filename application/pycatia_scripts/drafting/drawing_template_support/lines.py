@@ -1,9 +1,11 @@
+from typing import List
+
 from pycatia.in_interfaces.selection import Selection
 from pycatia.sketcher_interfaces.line_2D import Line2D
 
 
 def update_line_properties(
-        lines: [Line2D],
+        lines: List[Line2D],
         selection: Selection,
         line_width: int = 0,
         inheritance: int = 0
