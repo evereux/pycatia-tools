@@ -52,6 +52,10 @@ with app.app_context():
                 'url': url_for('drafting_save_as'),
                 'title': 'Save As'
             },
+            {
+                'url': url_for('drafting_insert_template'),
+                'title': 'Insert Template'
+            },
         ]
     }
 

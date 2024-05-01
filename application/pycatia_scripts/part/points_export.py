@@ -5,20 +5,14 @@ from pathlib import Path
 from pycatia.enumeration.enumeration_types import geometrical_feature_type
 from pycatia.exception_handling.exceptions import CATIAApplicationException
 
-from application.pycatia_scripts.the_document import PTPartDocument
+from application.pycatia_scripts.common import output
 from application.support.documents import get_part_document
 
 
-def export_points(geometric_set: str, file_name: str, target_directory: str) -> {}:
+def export_points(geometric_set: str, file_name: str, target_directory: str) -> dict:
     """
 
     """
-
-    output = {
-        'errors': [],
-        'data': {},
-        'output_file': None
-    }
 
     if not geometric_set:
         output['errors'].append('Please provide name of Geometric Set containing points.')

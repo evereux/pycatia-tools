@@ -5,11 +5,11 @@ pycatia-tools
 Introduction
 ------------
 A web based python application built with 
-[Flask](https://flask.palletsprojects.com/en/latest/) 
+[Flask](https://flask.palletsprojects.com/en/latest/) and [HTMX](https://htmx.org/)
 to interface with CATIA V5 using the python library 
 [pycatia](https://pycatia.readthedocs.io/en/latest/).
 
-The application contains a collection of tools to speed up common tasks.
+The application contains a collection of tools to speed up common tasks. Such as:
 
 * Create new Part, Product or Drawing with additional details such as 
  Part Number, Revision, Nomenclature and Definition.

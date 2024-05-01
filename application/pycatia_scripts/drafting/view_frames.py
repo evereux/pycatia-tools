@@ -1,26 +1,20 @@
 from pycatia.exception_handling.exceptions import CATIAApplicationException
 
+from application.pycatia_scripts.common import output
 from application.pycatia_scripts.the_document import PTDrawingDocument
+from application.support.documents import get_drawing_document
 
 
 def view_framer(display: bool) -> dict:
     """
 
     """
+    pt_drawing_document, errors = get_drawing_document()
 
-    output = {
-        'errors': [],
-        'data': {},
-    }
+    output['errors'] = output['errors'] + errors
 
-    try:
-        pt_drawing_document = PTDrawingDocument()
-        if not pt_drawing_document.is_drafting_document():
-            output['errors'].append('Active document is not a CATDrawing.')
-    except CATIAApplicationException:
-        output['errors'].append('No active document.')
-    except AttributeError:
-        output['errors'].append('No active document or active document is not a CATDrawing.')
+    if output['errors']:
+        return output
 
     sheets = pt_drawing_document.drawing_document.sheets
 
@@ -29,6 +23,7 @@ def view_framer(display: bool) -> dict:
         views = sheet.views
         for view in views:
             view.frame_visualization = display
-            output['data'][sheet.name].append(f'{view.name} {'Frame on' if display else 'Frame off'}')
+            state = 'Frame on' if view.frame_visualization else 'Frame off'
+            output['data'][sheet.name].append(f'{view.name} {state}')
 
     return output

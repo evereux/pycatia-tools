@@ -163,4 +163,4 @@ __catia__files__
 ThePoints*
 test*.py
 build.bat
-pycatia-tools-exe.py
+pycatia-tools-exe*

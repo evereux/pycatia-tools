@@ -39,7 +39,7 @@ class PTProductDocument(PTActiveDocument):
         self.product = self.product_document.product
 
     @property
-    def details(self) -> {}:
+    def details(self) -> dict:
 
         if not self.is_product_document():
             return {}
@@ -68,7 +68,7 @@ class PTPartDocument(PTActiveDocument):
         self.product = self.part_document.product
 
     @property
-    def details(self) -> {}:
+    def details(self) -> dict:
 
         if not self.is_part_document():
             return {}
@@ -95,7 +95,7 @@ class PTDrawingDocument(PTActiveDocument):
         self.drawing_document = DrawingDocument(self.active_document.com_object)
 
     @property
-    def details(self) -> {}:
+    def details(self) -> dict:
 
         if not self.is_drafting_document():
             return {}
