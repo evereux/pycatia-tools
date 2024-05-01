@@ -4,6 +4,7 @@ from pycatia.drafting_interfaces.drawing_sheet import DrawingSheet
 from pycatia.enumeration.enumeration_types import cat_text_anchor_position
 
 from .background_view import get_background_view_and_factory
+from .lines import update_line_properties
 from .settings import border_offset
 from .settings import sheet_sizes
 from .text_properties import set_text_properties
@@ -18,19 +19,26 @@ def create_border(sheet: DrawingSheet, size_info: dict):
     sheet_y_splits = sheet_sizes[legible_paper_size][1][1]
 
     background_view, factory_2d, main_view = get_background_view_and_factory(sheet)
+    selection = sheet.application.active_document.selection
 
+    # lines is a collector that will collect lines to change vis_properties
+    lines = []
     # create the outside border at page limits.
-    factory_2d.create_line(0, 0, sheet_x, 0)
-    factory_2d.create_line(sheet_x, 0, sheet_x, sheet_y)
-    factory_2d.create_line(sheet_x, sheet_y, 0, sheet_y)
-    factory_2d.create_line(0, sheet_y, 0, 0)
+    line_outer_bottom = factory_2d.create_line(0, 0, sheet_x, 0)
+    line_outer_right = factory_2d.create_line(sheet_x, 0, sheet_x, sheet_y)
+    line_outer_top = factory_2d.create_line(sheet_x, sheet_y, 0, sheet_y)
+    line_outer_left = factory_2d.create_line(0, sheet_y, 0, 0)
+
+    lines.extend([line_outer_bottom, line_outer_right, line_outer_top, line_outer_left])
 
     # create inner border offset by 10mm
     offset = border_offset
-    factory_2d.create_line(offset, offset, sheet_x - offset, offset)
-    factory_2d.create_line(sheet_x - offset, offset, sheet_x - offset, sheet_y - offset)
-    factory_2d.create_line(sheet_x - offset, sheet_y - offset, offset, sheet_y - offset)
-    factory_2d.create_line(offset, sheet_y - offset, offset, offset)
+    line_inner_bottom = factory_2d.create_line(offset, offset, sheet_x - offset, offset)
+    line_inner_right = factory_2d.create_line(sheet_x - offset, offset, sheet_x - offset, sheet_y - offset)
+    line_inner_top = factory_2d.create_line(sheet_x - offset, sheet_y - offset, offset, sheet_y - offset)
+    line_inner_left = factory_2d.create_line(offset, sheet_y - offset, offset, offset)
+
+    lines.extend([line_inner_bottom, line_inner_right, line_inner_top, line_inner_left])
 
     x_offset = sheet_x / sheet_x_splits
     y_offset = sheet_y / sheet_y_splits
@@ -39,17 +47,21 @@ def create_border(sheet: DrawingSheet, size_info: dict):
     for n in range(sheet_x_splits):
         i = n + 1
         # bottom
-        factory_2d.create_line(x_offset * i, 0, x_offset * i, offset)
+        bottom_vertical_line = factory_2d.create_line(x_offset * i, 0, x_offset * i, offset)
         # top
-        factory_2d.create_line(x_offset * i, sheet_y - offset, x_offset * i, sheet_y)
+        top_vertical_line = factory_2d.create_line(x_offset * i, sheet_y - offset, x_offset * i, sheet_y)
+        lines.extend([bottom_vertical_line, top_vertical_line])
 
     # create the horizontal grid reference lines
     for n in range(sheet_y_splits):
         i = n + 1
         # left
-        factory_2d.create_line(0, y_offset * i, offset, y_offset * i)
+        left_vertical_line = factory_2d.create_line(0, y_offset * i, offset, y_offset * i)
         # right
-        factory_2d.create_line(sheet_x, y_offset * i, sheet_x - offset, y_offset * i)
+        right_vertical_line = factory_2d.create_line(sheet_x, y_offset * i, sheet_x - offset, y_offset * i)
+        lines.extend([left_vertical_line, right_vertical_line])
+
+    update_line_properties(lines, selection)
 
     # add text for grid references
     anchor_position = cat_text_anchor_position.index('catMiddleCenter')

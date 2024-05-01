@@ -11,6 +11,7 @@ from pycatia.knowledge_interfaces.parameters import Parameters
 from pycatia.sketcher_interfaces.factory_2D import Factory2D
 
 from .background_view import get_background_view_and_factory
+from .lines import update_line_properties
 from .settings import border_offset
 from .settings import company_details
 from .text_properties import set_text_properties
@@ -25,15 +26,18 @@ def create_copyright_box(sheet: DrawingSheet, parameters: Parameters):
     """
 
     background_view, factory_2d, _ = get_background_view_and_factory(sheet)
+    selection = sheet.application.active_document.selection
 
     texts = background_view.texts
 
     box_height = 30
     box_width = 130
-    top_line = factory_2d.create_line(border_offset, border_offset + box_height, border_offset + box_width,
-                                      border_offset + box_height)
-    right_line = factory_2d.create_line(border_offset + box_width, border_offset, border_offset + box_width,
-                                        border_offset + box_height)
+    cbox_top_line = factory_2d.create_line(border_offset, border_offset + box_height, border_offset + box_width,
+                                           border_offset + box_height)
+    cbox_right_line = factory_2d.create_line(border_offset + box_width, border_offset, border_offset + box_width,
+                                             border_offset + box_height)
+
+    update_line_properties([cbox_top_line, cbox_right_line], selection)
 
     datetime.datetime.now()
     current_year = datetime.datetime.now().strftime('%Y')
