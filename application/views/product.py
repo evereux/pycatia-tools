@@ -36,6 +36,10 @@ def product_reorder():
 def product_attributes():
 
     pt_product_document, errors = get_product_document()
+
+    if errors:
+        return render_template('partials/errors.html', errors=errors)
+
     product = pt_product_document.product
 
     attributes = {
