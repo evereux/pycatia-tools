@@ -11,14 +11,18 @@
     CATDrawing.
 </p>
 
-<p class="alert alert-warning mt-2">
-    All existing data in the background views will be deleted.
-</p>
-
-<p class="alert alert-warning mt-2">
-    This is currently only designed to work with metric sheet sizes
-    <span class="font-monospace">A0, A1, A2 and A3</span>.
-</p>
+<div class="alert alert-warning mt-2">
+    <p>
+        All existing data in the background views will be deleted.
+    </p>
+    <p>
+        Template defaults can be changed by editing the settings.json file.
+    </p>
+    <p>
+        Currently only designed to work with metric sheet sizes
+        <span class="font-monospace">A0, A1, A2 and A3</span>.
+    </p>
+</div>
 
     <form
             hx-post="/htmx/drafting/template"
@@ -28,21 +32,21 @@
         <div class="row mb-3">
             <div class="col">
                 <label for="formDrawingNumber" class="form-label">Drawing Number</label>
-                <input name="DRAWING-NUMBER" type="text" class="form-control" id="formDrawingNumber">
+                <input name="DRAWING-NUMBER" type="text" class="form-control" id="formDrawingNumber" value="{{ parameters['DRAWING-NUMBER'] }}">
             </div>
             <div class="col">
                 <label for="formTitle" class="form-label">Title</label>
-                <input name="TITLE" type="text" class="form-control" id="formTitle">
+                <input name="TITLE" type="text" class="form-control" id="formTitle" value="{{ parameters['TITLE'] }}">
             </div>
         </div>
         <div class="row mb-3">
             <div class="col">
                 <label for="formDrawnBy" class="form-label">Drawn By</label>
-                <input name="DRAWN-BY" type="text" class="form-control" id="formDrawnBy">
+                <input name="DRAWN-BY" type="text" class="form-control" id="formDrawnBy" value="{{ parameters['DRAWN-BY'] }}">
             </div>
             <div class="col">
                 <label for="formRevision" class="form-label">Revision</label>
-                <input name="REVISION" type="text" class="form-control" id="formRevision">
+                <input name="REVISION" type="text" class="form-control" id="formRevision" value="{{ parameters['REVISION'] }}">
             </div>
         </div>
         <div class="text-center">

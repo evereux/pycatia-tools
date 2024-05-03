@@ -6,24 +6,27 @@ import os
 
 
 def read_json(f: Path):
-    with open(f) as file:
+    """
+    Reads the contents of json file `f` and returns the data.
+    """
+    with open(f, encoding='utf-8') as file:
         data = json.load(file)
 
     return data
 
 
 # you probably wouldn't have to do this out of a development environment.
-path_prefix = Path(os.getcwd(), 'application/pycatia_scripts/drafting', 'drawing_template_support')
+path_prefix = Path(os.getcwd())
 
 json_settings = Path(path_prefix, 'settings.json')
 json_data = read_json(json_settings)
 
-border_offset = json_data['border_offset']
-company_details = json_data['company_details']
-logo = Path(path_prefix, json_data['logo'])
-parameters = json_data['parameters']
-sheet_names = json_data['sheet_names']
-sheet_sizes = json_data['sheet_sizes']
-template_name = json_data['template_name']
-tolerances = json_data['tolerances']
-units = json_data['units']
+border_offset = json_data['drawing_template']['border_offset']
+company_details = json_data['drawing_template']['company_details']
+logo = Path(path_prefix, json_data['drawing_template']['logo'])
+parameters = json_data['drawing_template']['parameters']
+sheet_names = json_data['drawing_template']['sheet_names']
+sheet_sizes = json_data['drawing_template']['sheet_sizes']
+template_name = json_data['drawing_template']['template_name']
+tolerances = json_data['drawing_template']['tolerances']
+units = json_data['drawing_template']['units']
