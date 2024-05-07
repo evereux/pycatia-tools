@@ -16,6 +16,6 @@ def htmx_create_new_product():
     r = create_new_product(part_number, revision, definition, nomenclature)
 
     if r:
-        return f'<p class="alert alert-success">New Product "{part_number}" created.</p>'
+        return f'<p class="alert alert-success mt-2">New Product "{part_number}" created.</p>'
 
     return render_template('partials/error.html')

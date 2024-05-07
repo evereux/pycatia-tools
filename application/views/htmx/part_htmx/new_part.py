@@ -17,6 +17,6 @@ def htmx_create_new_part():
     r = create_new_part(part_number, revision, definition, nomenclature)
 
     if r:
-        return f'<p class="alert alert-success">New Part "{part_number}" created.</p>'
+        return f'<p class="alert alert-success mt-2">New Part "{part_number}" created.</p>'
 
     return render_template('partials/error.html')
