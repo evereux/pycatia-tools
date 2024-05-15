@@ -9,10 +9,10 @@ from application.views.url_prefixes import htmx
 @app.route(f'{htmx}/part/create_new', methods=['POST'])
 def htmx_create_new_part():
 
-    part_number = request.form.get('part_number', type=str) or False
-    revision = request.form.get('revision', type=str) or False
-    definition = request.form.get('definition', type=str) or False
-    nomenclature = request.form.get('nomenclature', type=str) or False
+    part_number = request.form.get('part_number', type=str) or ""
+    revision = request.form.get('revision', type=str) or ""
+    definition = request.form.get('definition', type=str) or ""
+    nomenclature = request.form.get('nomenclature', type=str) or ""
 
     r = create_new_part(part_number, revision, definition, nomenclature)
 
