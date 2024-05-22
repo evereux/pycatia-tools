@@ -3,7 +3,7 @@
 from pycatia.drafting_interfaces.drawing_sheet import DrawingSheet
 from pycatia.enumeration.enumeration_types import cat_paper_size
 
-from .settings import sheet_sizes
+from application.pycatia_scripts.settings import sheet_sizes
 
 
 def get_sheet_size_info(sheet: DrawingSheet) -> dict:

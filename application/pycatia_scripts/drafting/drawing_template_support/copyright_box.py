@@ -3,17 +3,15 @@
 import datetime
 
 from pycatia.drafting_interfaces.drawing_sheet import DrawingSheet
-from pycatia.drafting_interfaces.drawing_texts import DrawingTexts
 from pycatia.enumeration.enumeration_types import cat_text_anchor_position
-from pycatia.enumeration.enumeration_types import cat_text_frame_type
 from pycatia.enumeration.enumeration_types import cat_text_property
 from pycatia.knowledge_interfaces.parameters import Parameters
-from pycatia.sketcher_interfaces.factory_2D import Factory2D
+
+from application.pycatia_scripts.settings import border_offset
+from application.pycatia_scripts.settings import company_details
 
 from .background_view import get_background_view_and_factory
 from .lines import update_line_properties
-from .settings import border_offset
-from .settings import company_details
 from .text_properties import set_text_properties
 
 

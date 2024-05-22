@@ -3,10 +3,11 @@
 from pycatia.drafting_interfaces.drawing_sheet import DrawingSheet
 from pycatia.enumeration.enumeration_types import cat_text_anchor_position
 
+from application.pycatia_scripts.settings import border_offset
+from application.pycatia_scripts.settings import sheet_sizes
+
 from .background_view import get_background_view_and_factory
 from .lines import update_line_properties
-from .settings import border_offset
-from .settings import sheet_sizes
 from .text_properties import set_text_properties
 
 

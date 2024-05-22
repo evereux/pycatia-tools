@@ -1,7 +1,7 @@
 from application import app
 from application.support.template import render_template
 from application.views.view_wrappers import catia_v5_required
-from application.pycatia_scripts.drafting.drawing_template_support.settings import parameters
+from application.pycatia_scripts.settings import parameters
 
 
 @app.route('/drafting')

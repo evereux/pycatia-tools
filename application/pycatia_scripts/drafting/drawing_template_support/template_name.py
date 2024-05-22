@@ -3,9 +3,9 @@
 from pycatia.drafting_interfaces.drawing_sheet import DrawingSheet
 from pycatia.enumeration.enumeration_types import cat_text_anchor_position
 
+from application.pycatia_scripts.settings import border_offset
+from application.pycatia_scripts.settings import template_name
 from .background_view import get_background_view_and_factory
-from .settings import border_offset
-from .settings import template_name
 from .text_properties import set_text_properties
 
 

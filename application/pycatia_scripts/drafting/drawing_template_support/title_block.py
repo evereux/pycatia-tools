@@ -7,13 +7,13 @@ from pycatia.enumeration.enumeration_types import cat_text_anchor_position
 from pycatia.exception_handling.exceptions import CATIAApplicationException
 from pycatia.knowledge_interfaces.parameters import Parameters
 
+from application.pycatia_scripts.settings import border_offset
+from application.pycatia_scripts.settings import company_details
+from application.pycatia_scripts.settings import logo
+from application.pycatia_scripts.settings import tolerances
+from application.pycatia_scripts.settings import units
 from .background_view import get_background_view_and_factory
 from .lines import update_line_properties
-from .settings import border_offset
-from .settings import company_details
-from .settings import logo
-from .settings import tolerances
-from .settings import units
 from .text_properties import set_text_properties
 
 
