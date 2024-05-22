@@ -34,7 +34,7 @@
             "A4-portrait": [[210, 297], [0, 0]],
             "A4-landscape": [[297, 210], [0, 0]]
         },
-        "logo": "logo\\pycatia-logo.jpg",
+        "logo": "pycatia-logo.jpg",
         "template_name": "DT-001 A",
         "tolerances": {
             ",X": "±1,5",
@@ -42,6 +42,19 @@
             ",XXX": "±,25"
         },
         "units":["METRIC", "MILLIMETRES"]
+    },
+    "part_template": {
+        "geometric_sets": ["ReferenceGeometry", "MasterGeometry", "ConstructionGeometry"],
+        "parameters": {
+            "Thickness": {
+                "type": "length",
+                "value": 2
+            },
+            "InternalBendRadius": {
+                "type": "length",
+                "value": 2
+            }
+        }
     }
 }
 

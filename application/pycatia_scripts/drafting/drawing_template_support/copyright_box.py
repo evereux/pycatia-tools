@@ -7,12 +7,14 @@ from pycatia.enumeration.enumeration_types import cat_text_anchor_position
 from pycatia.enumeration.enumeration_types import cat_text_property
 from pycatia.knowledge_interfaces.parameters import Parameters
 
-from application.pycatia_scripts.settings import border_offset
-from application.pycatia_scripts.settings import company_details
+from application.pycatia_scripts.settings import drawing_template
 
 from .background_view import get_background_view_and_factory
 from .lines import update_line_properties
 from .text_properties import set_text_properties
+
+border_offset = drawing_template['border_offset']
+company_details = drawing_template['company_details']
 
 
 def create_copyright_box(sheet: DrawingSheet, parameters: Parameters):

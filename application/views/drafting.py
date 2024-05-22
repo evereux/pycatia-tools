@@ -1,7 +1,7 @@
 from application import app
 from application.support.template import render_template
 from application.views.view_wrappers import catia_v5_required
-from application.pycatia_scripts.settings import parameters
+from application.pycatia_scripts.settings import drawing_template
 
 
 @app.route('/drafting')
@@ -33,5 +33,5 @@ def drafting_save_as():
 def drafting_insert_template():
     return render_template(
         'drafting_template.html',
-        parameters=parameters
+        parameters=drawing_template['parameters']
     )

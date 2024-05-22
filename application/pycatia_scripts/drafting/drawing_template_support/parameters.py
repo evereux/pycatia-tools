@@ -5,7 +5,7 @@ from pywintypes import com_error
 from pycatia.drafting_interfaces.drawing_document import DrawingDocument
 from pycatia.knowledge_interfaces.parameters import Parameters
 
-from application.pycatia_scripts.settings import parameters
+from application.pycatia_scripts.settings import drawing_template
 
 
 def create_parameters(drawing: DrawingDocument, form_parameters: dict) -> Parameters:
@@ -19,7 +19,7 @@ def create_parameters(drawing: DrawingDocument, form_parameters: dict) -> Parame
 
     existing_parameters = drawing_parameters.all_parameters()
 
-    for param in parameters:
+    for param in drawing_template['parameters']:
         # if the method get_item fails, capture the exception and add the parameter.
         try:
             # see if the parameter already exists
@@ -31,7 +31,7 @@ def create_parameters(drawing: DrawingDocument, form_parameters: dict) -> Parame
             pass
         if param in form_parameters:
             if form_parameters[param]:
-                parameters[param] = form_parameters[param]
-        drawing_parameters.create_string(param, parameters[param])
+                drawing_template['parameters'][param] = form_parameters[param]
+        drawing_parameters.create_string(param, drawing_template['parameters'][param])
 
     return drawing.parameters

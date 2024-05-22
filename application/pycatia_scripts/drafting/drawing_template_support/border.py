@@ -3,8 +3,7 @@
 from pycatia.drafting_interfaces.drawing_sheet import DrawingSheet
 from pycatia.enumeration.enumeration_types import cat_text_anchor_position
 
-from application.pycatia_scripts.settings import border_offset
-from application.pycatia_scripts.settings import sheet_sizes
+from application.pycatia_scripts.settings import drawing_template
 
 from .background_view import get_background_view_and_factory
 from .lines import update_line_properties
@@ -16,8 +15,8 @@ def create_border(sheet: DrawingSheet, size_info: dict):
     sheet_x = size_info['sheet_x']
     sheet_y = size_info['sheet_y']
 
-    sheet_x_splits = sheet_sizes[legible_paper_size][1][0]
-    sheet_y_splits = sheet_sizes[legible_paper_size][1][1]
+    sheet_x_splits = drawing_template['sheet_sizes'][legible_paper_size][1][0]
+    sheet_y_splits = drawing_template['sheet_sizes'][legible_paper_size][1][1]
 
     background_view, factory_2d, main_view = get_background_view_and_factory(sheet)
     selection = sheet.application.active_document.selection
@@ -33,7 +32,7 @@ def create_border(sheet: DrawingSheet, size_info: dict):
     lines.extend([line_outer_bottom, line_outer_right, line_outer_top, line_outer_left])
 
     # create inner border offset by 10mm
-    offset = border_offset
+    offset = drawing_template['border_offset']
     line_inner_bottom = factory_2d.create_line(offset, offset, sheet_x - offset, offset)
     line_inner_right = factory_2d.create_line(sheet_x - offset, offset, sheet_x - offset, sheet_y - offset)
     line_inner_top = factory_2d.create_line(sheet_x - offset, sheet_y - offset, offset, sheet_y - offset)

@@ -3,7 +3,7 @@
 from pycatia.drafting_interfaces.drawing_sheet import DrawingSheet
 from pycatia.enumeration.enumeration_types import cat_paper_size
 
-from application.pycatia_scripts.settings import sheet_sizes
+from application.pycatia_scripts.settings import drawing_template
 
 
 def get_sheet_size_info(sheet: DrawingSheet) -> dict:
@@ -17,11 +17,11 @@ def get_sheet_size_info(sheet: DrawingSheet) -> dict:
     enum_paper_size = cat_paper_size[paper_size]
     legible_paper_size = enum_paper_size.strip('catPaper')
 
-    if legible_paper_size not in sheet_sizes:
+    if legible_paper_size not in drawing_template['sheet_sizes']:
         raise ValueError('Failed to reconcile paper size')
 
-    sheet_x = sheet_sizes[legible_paper_size][0][0]
-    sheet_y = sheet_sizes[legible_paper_size][0][1]
+    sheet_x = drawing_template['sheet_sizes'][legible_paper_size][0][0]
+    sheet_y = drawing_template['sheet_sizes'][legible_paper_size][0][1]
 
     return {"paper_size": paper_size,
             "enum_paper_size": enum_paper_size,

@@ -1,4 +1,5 @@
-#! /usr/bin/python3.8
+from pathlib import Path
+
 
 from pycatia.drafting_interfaces.drawing_sheet import DrawingSheet
 from pycatia.drafting_interfaces.drawing_text import DrawingText
@@ -7,11 +8,8 @@ from pycatia.enumeration.enumeration_types import cat_text_anchor_position
 from pycatia.exception_handling.exceptions import CATIAApplicationException
 from pycatia.knowledge_interfaces.parameters import Parameters
 
-from application.pycatia_scripts.settings import border_offset
-from application.pycatia_scripts.settings import company_details
-from application.pycatia_scripts.settings import logo
-from application.pycatia_scripts.settings import tolerances
-from application.pycatia_scripts.settings import units
+from application.pycatia_scripts.settings import drawing_template
+from application.pycatia_scripts.settings import path_prefix
 from .background_view import get_background_view_and_factory
 from .lines import update_line_properties
 from .text_properties import set_text_properties
@@ -97,8 +95,8 @@ def create_title_block(sheet: DrawingSheet,
     title_block_height = 45.5
 
     # determine the bottom left corner of title block
-    bottom_left_hand_corner_x = paper_size[0] - border_offset - title_block_width
-    bottom_left_hand_corner_y = border_offset
+    bottom_left_hand_corner_x = paper_size[0] - drawing_template['border_offset'] - title_block_width
+    bottom_left_hand_corner_y = drawing_template['border_offset']
 
     line_height = 6.5
 
@@ -320,13 +318,14 @@ def create_title_block(sheet: DrawingSheet,
     # company name
     text_x = v3['x'] + 50
     text_y = h4['y'] + 9
-    add_title_block_text(texts, company_details['name'], text_x, text_y, size=2.2)
+    add_title_block_text(texts, drawing_template['company_details']['name'], text_x, text_y, size=2.2)
     # loop through company address details
-    for text in company_details['address']:
+    for text in drawing_template['company_details']['address']:
         text_y = text_y - 3
         add_title_block_text(texts, text, text_x, text_y, size=2.2)
 
     # add the logo
+    logo = Path(path_prefix, 'application/pycatia_scripts/drafting/drawing_template_support/logo', drawing_template['logo'])
     if not logo.is_file():
         raise CATIAApplicationException(f'Could not locate logo: "{logo}".')
     logo_x = v3["x"] + 12.5
@@ -339,12 +338,12 @@ def create_title_block(sheet: DrawingSheet,
     text_y = h4_1['y'] + text_y_offset - 1
     unit_text_1 = add_title_block_text(texts, 'UNLESS OTHERWISE SPECIFIED', text_x, text_y)
     text_y = h4['y'] + text_y_offset + 1
-    unit_text_1 = add_title_block_text(texts, f'DIMENSIONS ARE IN {units[1]}', text_x, text_y)
+    unit_text_1 = add_title_block_text(texts, f'DIMENSIONS ARE IN {drawing_template["units"][1]}', text_x, text_y)
 
     # linear tolerances
     text_x = v2['x'] + text_x_offset
     text_y = h3_1['y'] + text_y_offset - 1
-    unit_text_1 = add_title_block_text(texts, f'{units[0]} LINEAR', text_x, text_y)
+    unit_text_1 = add_title_block_text(texts, f'{drawing_template["units"][0]} LINEAR', text_x, text_y)
     text_y = h3['y'] + text_y_offset + 1
     unit_text_1 = add_title_block_text(texts, 'TOLERANCES.', text_x, text_y)
 
@@ -354,7 +353,7 @@ def create_title_block(sheet: DrawingSheet,
     text_y = h3_3['y'] - .15
     tol_1_text = add_title_block_text(texts, tol_1_text_key, text_x, text_y)
     text_x = v2_2['x'] + 2.5
-    tol_2_text_value = tolerances[tol_1_text_key][1:]
+    tol_2_text_value = drawing_template['tolerances'][tol_1_text_key][1:]
     tol_2_text = add_title_block_text(texts, tol_2_text_value, text_x, text_y)
 
     tol_3_text_key = ",XX"
@@ -362,7 +361,7 @@ def create_title_block(sheet: DrawingSheet,
     text_y = h3_2['y'] - .15
     tol_3_text = add_title_block_text(texts, tol_3_text_key, text_x, text_y)
     text_x = v2_2['x'] + 2.5
-    tol_3_text_value = tolerances[tol_3_text_key][1:]
+    tol_3_text_value = drawing_template['tolerances'][tol_3_text_key][1:]
     tol_3_text = add_title_block_text(texts, tol_3_text_value, text_x, text_y)
 
     tol_4_text_key = ",XXX"
@@ -370,7 +369,7 @@ def create_title_block(sheet: DrawingSheet,
     text_y = h3['y'] - .15
     tol_4_text = add_title_block_text(texts, tol_4_text_key, text_x, text_y)
     text_x = v2_2['x'] + 2.5
-    tol_4_text_value = tolerances[tol_4_text_key][1:]
+    tol_4_text_value = drawing_template['tolerances'][tol_4_text_key][1:]
     tol_3_text = add_title_block_text(texts, tol_4_text_value, text_x, text_y)
 
     # add text input fields that are linked to a parameter
