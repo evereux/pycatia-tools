@@ -1,4 +1,4 @@
-from application.pycatia_scripts.common import output
+from application.pycatia_scripts.common import get_output
 from application.support.documents import get_drawing_document
 
 
@@ -8,6 +8,7 @@ def view_locker(lock: bool, lock_main: bool, lock_background: bool) -> dict:
     """
 
     pt_drawing_document, errors = get_drawing_document()
+    output = get_output()
 
     output['errors'] = output['errors'] + errors
 

@@ -1,6 +1,6 @@
 flask==3.0.3
 flask-wtf==1.2.1
 python-dotenv==1.0.1
-pycatia==0.6.7
+pycatia==0.6.9
 pywinauto==0.6.8
 pypdf==4.2.0

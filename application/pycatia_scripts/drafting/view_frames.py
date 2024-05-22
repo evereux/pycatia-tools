@@ -1,6 +1,6 @@
 from pycatia.exception_handling.exceptions import CATIAApplicationException
 
-from application.pycatia_scripts.common import output
+from application.pycatia_scripts.common import get_output
 from application.pycatia_scripts.the_document import PTDrawingDocument
 from application.support.documents import get_drawing_document
 
@@ -10,6 +10,7 @@ def view_framer(display: bool) -> dict:
 
     """
     pt_drawing_document, errors = get_drawing_document()
+    output = get_output()
 
     output['errors'] = output['errors'] + errors
 

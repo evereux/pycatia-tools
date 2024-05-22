@@ -5,7 +5,7 @@ import string
 
 from pypdf import PdfWriter
 
-from application.pycatia_scripts.common import output
+from application.pycatia_scripts.common import get_output
 from application.support.documents import get_drawing_document
 
 
@@ -17,6 +17,8 @@ def random_str(length: int = 8):
 def save_as(exclude_sheets: str | None = None, target_directory: str | None = None):
 
     pt_drawing_document, errors = get_drawing_document()
+
+    output = get_output()
 
     output['errors'] = output['errors'] + errors
 

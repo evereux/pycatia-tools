@@ -10,11 +10,16 @@
     Creates a new Part using the attributes submitted in the Form below.
 </p>
 
+<p class="alert alert-info p-1">
+    New <span class="font-monospace">Geometrical Sets</span> and <span class="font-monospace">Parameters</span> will be created as defined in the <span class="font-monospace">settings.json</span> file.
+</p>
+
 <form
         hx-post="/htmx/part/create_new"
         hx-target="#create_new"
         hx-swap="innerHtml"
 >
+<h3>Attributes</h3>
     <div class="row mb-3">
         <div class="col">
             <label for="formPartNumber" class="form-label">part number</label>

@@ -7,7 +7,7 @@ from pycatia.exception_handling.exceptions import CATIAApplicationException
 from werkzeug.datastructures import ImmutableMultiDict
 from werkzeug.utils import secure_filename
 
-from application.pycatia_scripts.common import output
+from application.pycatia_scripts.common import get_output
 from application.pycatia_scripts.the_document import PTPartDocument
 from application.support.documents import get_part_document
 from application.support.files import allowed_file
@@ -31,6 +31,8 @@ def import_points(geometric_set: str, files: ImmutableMultiDict):
     """
 
     """
+
+    output = get_output()
 
     if 'file' not in files:
         output['errors'].append('Missing file input.')

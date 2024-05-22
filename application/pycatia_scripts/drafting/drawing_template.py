@@ -1,7 +1,7 @@
 from pycatia.drafting_interfaces.drawing_document import DrawingDocument
 from pycatia.drafting_interfaces.drawing_view import DrawingView
 
-from application.pycatia_scripts.common import output
+from application.pycatia_scripts.common import get_output
 from application.support.documents import get_drawing_document
 
 from application.pycatia_scripts.drafting.drawing_template_support.border import create_border
@@ -16,6 +16,7 @@ from application.pycatia_scripts.drafting.drawing_template_support.title_block i
 def insert_drawing_template(form_parameters):
 
     pt_drawing_document, errors = get_drawing_document()
+    output = get_output()
 
     output['errors'] = output['errors'] + errors
 

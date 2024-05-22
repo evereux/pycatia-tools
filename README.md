@@ -12,7 +12,9 @@ to interface with CATIA V5 using the python library
 The application contains a collection of tools to speed up common tasks. Such as:
 
 * Create new Part, Product or Drawing with additional details such as 
- Part Number, Revision, Nomenclature and Definition.
+ Part Number, Revision, Nomenclature and Definition. Geoemtric Set and Parameter
+ values are created as defined in settings.json. To skip the creation replace the
+ values with `None`.
 * Import to CATPart or export from CATPart points using CSV files.
 * Create a bounding box around a part.
 * Lock / Unlock all views of a CATDrawing.

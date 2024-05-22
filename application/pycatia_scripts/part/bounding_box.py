@@ -4,7 +4,7 @@ from pycatia.knowledge_interfaces.length import Length
 from pycatia.mec_mod_interfaces.axis_system import AxisSystem
 from pycatia.sketcher_interfaces.geometry_2D import Geometry2D
 
-from application.pycatia_scripts.common import output
+from application.pycatia_scripts.common import get_output
 from application.pycatia_scripts.the_document import PTPartDocument
 from application.support.documents import get_part_document
 
@@ -12,6 +12,8 @@ from application.support.documents import get_part_document
 def create_bounding_box():
 
     pt_part_document, errors = get_part_document()
+
+    output = get_output
 
     output['errors'] = output['errors'] + errors
 
