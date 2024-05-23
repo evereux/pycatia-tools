@@ -4,13 +4,13 @@ from pycatia.product_structure_interfaces.product_document import ProductDocumen
 
 def get_output() -> dict:
 
-    out_put: dict = {
+    output: dict = {
         'errors': [],
         'data': {}, # can be overwritten with a string for simple success reports otherwise use a mapping.
         'output_file': None
     }
 
-    return out_put
+    return output
 
 def check_part_number_exists(documents: Documents, output: dict, part_number: str):
         """

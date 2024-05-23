@@ -1,8 +1,8 @@
 from pycatia.mec_mod_interfaces.part_document import PartDocument
 from pycatia.product_structure_interfaces.product_document import ProductDocument
 
-
 from application.pycatia_scripts.common import check_part_number_exists
+from application.pycatia_scripts.common import get_output
 from application.pycatia_scripts.com_objects import get_app_object
 from application.pycatia_scripts.settings import part_template
 
@@ -19,13 +19,13 @@ def create_new_part(part_number: str, revision: str, definition: str, nomenclatu
 
     application = get_app_object()
     documents = application.documents
-
-    from application.pycatia_scripts.common import out_put
     
-    out_put = check_part_number_exists(documents, out_put, part_number)
+    output = get_output()
 
-    if out_put['errors']:
-        return out_put
+    output = check_part_number_exists(documents, output, part_number)
+
+    if output['errors']:
+        return output
 
     part_document = PartDocument(documents.add('Part').com_object)
     product = part_document.product
@@ -56,6 +56,6 @@ def create_new_part(part_number: str, revision: str, definition: str, nomenclatu
 
     part.update()
 
-    out_put['data'] = f'New Part {part_number} created.'
+    output['data'] = f'New Part {part_number} created.'
 
-    return out_put
+    return output
