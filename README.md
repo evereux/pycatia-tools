@@ -79,3 +79,15 @@ flask run
 
 Open a web browser and access the url https://127.0.1:5578
 
+Building
+--------
+
+To build an executable do the following:
+
+```
+pip install nuitka
+```
+
+```
+python -m nuitka pycatia-tools-exe.py
+```

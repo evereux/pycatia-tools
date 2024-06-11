@@ -16,4 +16,3 @@ from application.version import version
 from application import views
 
 app.jinja_env.globals.update(version=version)
-app.jinja_env.globals.update(version=version)

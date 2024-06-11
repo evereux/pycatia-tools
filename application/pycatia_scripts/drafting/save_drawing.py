@@ -14,7 +14,7 @@ def random_str(length: int = 8):
     return ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(length))
 
 
-def save_as(exclude_sheets: str | None = None, target_directory: str | None = None):
+def save_as_pdf(exclude_sheets: str | None = None, target_directory: str | None = None):
 
     pt_drawing_document, errors = get_drawing_document()
 
@@ -59,5 +59,36 @@ def save_as(exclude_sheets: str | None = None, target_directory: str | None = No
         output['data'] = f'PDF "{target_pdf}" created.'
     except:
         output['errors'].append('There was a problem creating PDF or deleting source PDFS.')
+
+    return output
+
+
+def save_as_dxf(include_sheets: str | None = None, target_directory: str | None = None):
+
+    pt_drawing_document, errors = get_drawing_document()
+
+    output = get_output()
+
+    output['errors'] = output['errors'] + errors
+
+    if not target_directory:
+        target_directory = os.path.join(os.path.join(os.environ['USERPROFILE']), 'Desktop')
+
+    if not Path(target_directory).is_dir():
+        output['errors'].append(f'"{target_directory}" is not a directory.')
+
+    if output['errors']:
+        return output
+
+    included = [o.strip() for o in include_sheets.split(",") if o]
+
+    drawing_doc = pt_drawing_document.drawing_document
+    dxf_name = Path(target_directory, drawing_doc.name).with_suffix('.dxf')
+
+    drawing_doc.export_data(dxf_name, 'dxf', overwrite=True)
+
+    # todo: deleted sheets not included.
+
+    output['data'] = f'DXFs "{dxf_name}" created.'
 
     return output

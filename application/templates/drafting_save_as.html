@@ -4,45 +4,13 @@
 
 {{ render_menu('drafting')|safe }}
 
+{% include('partials/menu_drafting_save_as.html') %}
 
-<h2 class="mt-3">Save As PDF</h2>
-<p class="alert alert-info p-1">
-    Saves the active drawing into a single PDF.
+<h2>Save As</h2>
+
+<p>
+    Select either PDF or DXF from optins above.
 </p>
-<ul class="alert alert-info">
-    <li>
-        Exclude Sheet Names Containing shall be a comma delimited list.
-        For example: "<span class="font-monospace">Details, DXF</span>". Any
-        sheet name containing these words will then be omitted from final PDF.
-    </li>
-    <li>If target directory is not provided the PDF will be placed on your desktop.</li>
-    <li>If PDF already exists it will be overwritten.</li>
-</ul>
-
-<form
-        class="row row-cols-lg-auto align-items-center"
-        hx-post="/htmx/drafting/save_as"
-        hx-target="#save_as"
-        hx-swap="innerHtml"
->
-    <div class="row mt-2">
-        <div class="col">
-            <label for="formSheetExclude" class="form-label">Exclude Sheet Names Containing</label>
-            <input name="exclude_sheet" type="text" class="form-control" id="formSheetExclude" value="Details,">
-        </div>
-    </div>
-        <div class="row mt-2">
-        <div class="col">
-            <label for="formTargetDirectory" class="form-label">Target directory</label>
-            <input name="target_directory" type="text" class="form-control" id="formTargetDirectory" placeholder="C:\Users\<yourname>\Desktop">
-        </div>
-    </div>
-    <div class="text-center mt-2">
-        <button name="save_as" class="btn btn-primary rounded-1" value="save_as">Save As</button>
-    </div>
-</form>
-<div id="save_as"></div>
-
 
 {% endblock %}
 

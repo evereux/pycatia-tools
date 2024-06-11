@@ -55,6 +55,14 @@
                 "value": 2
             }
         }
+    },
+    "drafting": {
+        "pdf": {
+            "exclude_sheets": ["Details", "DXF"]
+        },
+        "dxf": {
+            "include_sheets": ["DXF"]
+        }
     }
 }
 
