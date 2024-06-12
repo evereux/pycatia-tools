@@ -28,7 +28,6 @@ def check_part_number_exists(documents: Documents, output: dict, part_number: st
             if extension == 'catpart' or extension == 'catproduct':
                 ref_product = ProductDocument(doc.com_object).product
                 if ref_product.part_number == part_number:
-                    print(ref_product.part_number, part_number)
                     output['errors'].append(f'Part number must be unique in the session. "{part_number}" already in use.')
                     return output
         

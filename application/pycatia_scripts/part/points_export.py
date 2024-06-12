@@ -74,7 +74,7 @@ def export_points(geometric_set: str, file_name: str, target_directory: str) -> 
                     if gft_text == 'Point':
                         measurable = spa_workbench.get_measurable(hs_reference)
                         coordinates = measurable.get_point()
-                        print(hybrid_shape.name, coordinates)
+                        # print(hybrid_shape.name, coordinates)
                         if i < 100:
                             data[hybrid_shape.name] = coordinates
                         writer.writerow([hybrid_shape.name, coordinates[0], coordinates[1], coordinates[2]])

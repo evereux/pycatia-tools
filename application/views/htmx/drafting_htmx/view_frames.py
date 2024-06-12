@@ -19,8 +19,6 @@ def htmx_drafting_framing():
     data = output['data']
     errors = output['errors']
 
-    print(output)
-
     if errors:
         return render_template('partials/errors.html', errors=errors)
 
