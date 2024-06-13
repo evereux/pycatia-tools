@@ -17,6 +17,8 @@ def htmx_document_path():
         pt_active_document = PTActiveDocument()
         pt_document = pt_active_document.active_document
         target_path = Path(pt_document.full_name).parent
+        if str(target_path) == ".":
+            target_path = ""
         return render_template(
             'partials/form_input_path.html',
             target_path=target_path
