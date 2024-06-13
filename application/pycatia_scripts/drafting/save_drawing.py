@@ -15,6 +15,9 @@ def random_str(length: int = 8):
 
 
 def save_as_pdf(exclude_sheets: str | None = None, target_directory: str | None = None):
+    """
+    :param str include_sheets: a comma delimited str of sheet names
+    """
 
     pt_drawing_document, errors = get_drawing_document()
 
@@ -63,7 +66,10 @@ def save_as_pdf(exclude_sheets: str | None = None, target_directory: str | None 
     return output
 
 
-def save_as_dxf(include_sheets: str | None = None, target_directory: str | None = None):
+def save_as_dxf(include_sheets: str | None, target_directory: str | None = None):
+    """
+    :param str include_sheets: a comma delimited str of sheet names
+    """
 
     pt_drawing_document, errors = get_drawing_document()
 
@@ -88,7 +94,21 @@ def save_as_dxf(include_sheets: str | None = None, target_directory: str | None 
     drawing_doc.export_data(dxf_name, 'dxf', overwrite=True)
 
     # todo: deleted sheets not included.
-
-    output['data'] = f'DXFs "{dxf_name}" created.'
+    sheets = drawing_doc.sheets
+    # get the sheet names and replace any "." with "_" as CATIA does this to the output filenames.
+    sheet_names = [sheet.name.replace('.', '_') for sheet in sheets]
+    drawing_name = drawing_doc.name.rsplit('.', 1)[0]
+    # generate a list of dxf sheet names
+    dxf_sheets = [Path(target_directory, f"{drawing_name}_{s}.dxf") for s in sheet_names]
+    output_sheets = []
+    for d in dxf_sheets:
+        if d.exists:
+            for i in included:
+                if i not in d.stem:
+                    os.remove(d)
+                else:
+                    output_sheets.append(d)
+    dxfs = ', '.join([str(s) for s in output_sheets])
+    output['data'] = f'DXFs "{dxfs}" created.'
 
     return output
