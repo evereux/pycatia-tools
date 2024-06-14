@@ -3,7 +3,7 @@ pycatia-tools
 
 
 Introduction
-------------
+============
 A web based python application built with 
 [Flask](https://flask.palletsprojects.com/en/latest/) and [HTMX](https://htmx.org/)
 to interface with CATIA V5 using the python library 
@@ -28,7 +28,7 @@ how to add functionality.
 
 
 Requirements
-------------
+============
 
 * Windows 7 or higher.
 * python >= 3.11 (earlier versions upto 3.9 may work but not yet tested)
@@ -36,7 +36,22 @@ Requirements
 
 
 Installation
-------------
+============
+
+Pre Built Binary
+----------------
+
+Download the zip file from the windows_builds directory. Extract the folder and 
+double click on pycatia-tools.exe. 
+
+Open a web browser and access the url https://127.0.1:5578
+
+Please note, that until pycatia-tools is formally released the pre-built binary 
+may not always be upto date.
+
+
+git
+---
 
 To clone this repository using [git cmd](https://git-scm.com/):
 
@@ -76,11 +91,12 @@ To run the application:
 ```
 flask run
 ```
-
 Open a web browser and access the url https://127.0.1:5578
 
+
+
 Building
---------
+========
 
 To build an executable do the following:
 
@@ -89,5 +105,5 @@ pip install nuitka
 ```
 
 ```
-python -m nuitka pycatia-tools-exe.py
+python -m nuitka --standalone --include-data-dir=<path_to>\pycatia-tools\application\templates=application/templates --include-data-dir=<path_to>\\pycatia-tools\application\static=application/static pycatia-tools-exe.py
 ```
