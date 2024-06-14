@@ -16,7 +16,19 @@
     <title>pyCATIA - Tools</title>
 
 </head>
+<body>
 <div class="container">
+
+    <div class="sidebar">
+        <div class="list-group">
+            <a class="list-group-item list-group-item-action border-0" href="{{ url_for('index') }}">Home</a>
+            <a class="list-group-item list-group-item-action border-0" href="{{ url_for('product') }}">Product</a>
+            <a class="list-group-item list-group-item-action border-0" href="{{ url_for('part') }}">Part</a>
+            <a class="list-group-item list-group-item-action border-0" href="{{ url_for('drafting') }}">Drafting</a>
+        </div>
+    </div>
+
+    <div class="pybody">
 
     {% include('common/header.html') %}
 
@@ -38,6 +50,9 @@
     <footer class="m-1 p-2 text-end small">
         <a href="https://github.com/evereux/pycatia-tools">pycatia-tools</a> {{ version }} -  Copyright © 2024 <a class="link_1" href="mailto:evereux@gmail.com">evereux@gmail.com</a>.
     </footer>
+
+    </div>
+
 </div>
 </body>
 </html>

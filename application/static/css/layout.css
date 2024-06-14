@@ -5,3 +5,33 @@ h1 {
 h2 {
     border-bottom: #0a53be 2px solid;
 }
+
+.pytitle {
+    border: 0;
+    font-size: 4rem;
+}
+
+.pybody {
+    margin-left: 50px;
+}
+
+.sidebar {
+    height: 100%;
+    width: 150px;
+    position: fixed;
+    left:0;
+    top: 0;
+    padding-top: 40px;
+    background-color: #F8F9FA;
+}
+
+.sidebar div {
+    padding: 8px;
+    font-size: 24px;
+    display: block;
+}
+
+.body-text {
+    margin-left: 150px;
+    font-size: 18px;
+}
