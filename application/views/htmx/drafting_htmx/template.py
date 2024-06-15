@@ -4,7 +4,6 @@ from application import app
 from application.pycatia_scripts.drafting.drawing_template import insert_drawing_template
 from application.support.template import render_template
 from application.views.url_prefixes import htmx
-from application.pycatia_scripts.drafting.view_frames import view_framer
 
 
 @app.route(f'{htmx}/drafting/template', methods=['POST'])

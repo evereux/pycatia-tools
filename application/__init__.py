@@ -10,7 +10,8 @@ app.config.update(TEMPLATES_AUTO_RELOAD=True)
 app.config['SECRET_KEY'] = os.urandom(32)
 app.config['WTF_CSRF_SECRET_KEY'] = os.getenv('WTF_CSRF_SECRET_KEY')
 app.config['SERVER_NAME'] = os.getenv('SERVER_NAME')
-app.config['MAX_CONTENT_LENGTH'] = 16 * 1024
+# this sets a 1MB file POST limit which higher than the default.
+app.config['MAX_CONTENT_LENGTH'] = 1024 * 1024
 
 from application.version import version
 from application import views

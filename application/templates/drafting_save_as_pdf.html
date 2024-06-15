@@ -29,6 +29,7 @@
         hx-post="/htmx/drafting/save_as_pdf"
         hx-target="#save_as"
         hx-swap="innerHtml"
+        hx-indicator="#save_as"
 >
     <div class="row mt-2">
         <div class="col">
@@ -45,7 +46,10 @@
         <button name="save_as" class="btn btn-primary rounded-1" value="save_as">Save As</button>
     </div>
 </form>
-<div id="save_as"></div>
+
+<div id="save_as">
+    {% include('partials/spinner.html') %}
+</div>
 
 
 {% endblock %}

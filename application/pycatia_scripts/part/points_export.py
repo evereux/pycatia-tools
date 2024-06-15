@@ -82,6 +82,6 @@ def export_points(geometric_set: str, file_name: str, target_directory: str) -> 
 
             output['data'] = data
         except PermissionError:
-            output['errors'].append(f'Could not write to {target_file}. If the file open?')
+            output['errors'].append(f'Could not write to {target_file}. Is the file open?')
 
     return output

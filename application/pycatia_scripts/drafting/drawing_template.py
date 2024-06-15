@@ -25,6 +25,9 @@ def insert_drawing_template(form_parameters):
 
     drawing: DrawingDocument = pt_drawing_document.drawing_document
     application = drawing.application
+    
+    # speeds up script running time
+    application.refresh_display = False
     sheets = drawing.sheets
     parameters = create_parameters(drawing, form_parameters)
     sheet_number = 1
@@ -59,5 +62,7 @@ def insert_drawing_template(form_parameters):
     sheets[0].activate()
 
     output['data'] = 'Drawing template inserted.'
+
+    application.refresh_display = True
 
     return output

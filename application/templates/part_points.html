@@ -4,10 +4,10 @@
 
 {{ render_menu('part')|safe }}
 
-<h2>Get Points</h2>
+<h2>Export Points</h2>
 
 <p class="alert alert-info">
-    Get the point coordinates of all the points in the Geometric Set `name` and save to CSV.
+   Export the point coordinates of all the points in the Geometric Set `name` and save to CSV.
 </p>
 <ul class="alert alert-info">
     <li>If target directory is not provided the file will be placed on your desktop.</li>
@@ -19,6 +19,7 @@
         hx-post="/htmx/part/export_points"
         hx-target="#export_points"
         hx-swap="innerHtml"
+        hx-indicator="#export_points"
 >
     <div class="row mt-2">
         <label for="formGeometricSet" class="col-3 col-form-label">Geometric Set</label>
@@ -39,10 +40,12 @@
         </div>
     </div>
     <div class="text-center mt-2">
-        <button name="Get Points" class="btn btn-primary rounded-1" value="Get Points">Get Points</button>
+        <button name="Export Points" class="btn btn-primary rounded-1" value="Export Points">Export Points</button>
     </div>
 </form>
-<div class="mt-2" id="export_points"></div>
+<div class="mt-2" id="export_points">
+    {% include('partials/spinner.html') %}
+</div>
 
 <h2>Import Points</h2>
 
@@ -65,7 +68,7 @@
         hx-target="#import_points"
         hx-swap="innerHtml"
         hx-encoding="multipart/form-data"
-        id="upload_form"
+        hx-indicator="#import_points"
 >
     <div class="row mt-2">
         <label for="formFile" class="col-3 form-label">Select CSV file.</label>
@@ -83,6 +86,8 @@
         <button name="Import Points" class="btn btn-primary" value="Import Points">Import Points</button>
     </div>
 </form>
-<div class="mt-2" id="import_points"></div>
+<div class="mt-2" id="import_points">
+    {% include('partials/spinner.html') %}
+</div>
 
 {% endblock %}

@@ -65,6 +65,8 @@ def import_points(geometric_set: str, files: ImmutableMultiDict):
         return output
 
     part_document = pt_part_document.part_document
+    application = part_document.application
+    application.refresh_display = False
     part = part_document.part
     hsf = part.hybrid_shape_factory
     hbs = part.hybrid_bodies
@@ -105,5 +107,6 @@ def import_points(geometric_set: str, files: ImmutableMultiDict):
                 output['data'][name] = (x, y, z)
             i += 1
 
+    application.refresh_display = False
     part.update()
     return output
