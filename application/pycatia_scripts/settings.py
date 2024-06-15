@@ -1,16 +1,19 @@
-#! /usr/bin/python3.8
-
-import json
 from pathlib import Path
 import os
 
+import yaml
 
-def read_json(f: Path):
+
+def read_yaml(f: Path):
     """
-    Reads the contents of json file `f` and returns the data.
+    Reads the contents of the yaml file `f` and returns the data.
     """
-    with open(f, encoding='utf-8') as file:
-        data = json.load(file)
+    data = None
+    with open(f) as file:
+        try:
+            data = yaml.safe_load(file)
+        except yaml.YAMLError as e:
+            print(e)
 
     return data
 
@@ -18,8 +21,8 @@ def read_json(f: Path):
 # you probably wouldn't have to do this out of a development environment.
 path_prefix = Path(os.getcwd())
 
-json_settings = Path(path_prefix, 'settings.json')
-json_data = read_json(json_settings)
+yaml_file = Path(path_prefix, 'settings.yaml')
+yaml_data = read_yaml(yaml_file)
 
-drawing_template = json_data['drawing_template']
-part_template = json_data['part_template']
+drawing_template = yaml_data['drawing_template']
+part_template = yaml_data['part_template']

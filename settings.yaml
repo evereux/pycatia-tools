@@ -64,10 +64,12 @@ drawing_template:
   - METRIC
   - MILLIMETRES
 part_template:
+  # list of default Geometric Sets generated on new part creation.
   geometric_sets:
   - ReferenceGeometry
   - MasterGeometry
   - ConstructionGeometry
+  # list of default parameters generated on new part creation.
   parameters:
     Thickness:
       type: length
@@ -77,9 +79,13 @@ part_template:
       value: 2
 drafting:
   pdf:
+    # list of strings, if exists in CATDrawing sheet names, that are excluded.
+    # For examples Sheet.Details or Details sheet names will be exluded.
     exclude_sheets:
     - Details
     - DXF
   dxf:
+    # list of strings, if exists in CATDrawing sheet names, that are included.
+    # For examples Sheet.DXF or DXF sheet names will be included.
     include_sheets:
     - DXF
