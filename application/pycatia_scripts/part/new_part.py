@@ -56,6 +56,6 @@ def create_new_part(part_number: str, revision: str, definition: str, nomenclatu
 
     part.update()
 
-    output['data'] = f'New Part {part_number} created.'
+    output['data'] = f'New Part "{part_number}" created.'
 
     return output

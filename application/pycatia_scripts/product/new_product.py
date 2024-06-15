@@ -34,7 +34,7 @@ def create_new_product(part_number: str, revision: str, definition: str, nomencl
         product.definition = definition
         product.nomenclature = nomenclature
 
-        output['data'] = f'New Product {part_number} created.'
+        output['data'] = f'New Product "{part_number}" created.'
 
         return output
 
