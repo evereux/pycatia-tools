@@ -20,8 +20,8 @@
 >
     <div class="col-12">
         <div class="input-group">
-            <button name="locker" class="btn btn-primary rounded-1 m-2" value="lock">Lock Views</button>
-            <button name="locker" class="btn btn-primary rounded-1 m-2" value="unlock">Unlock Views</button>
+            <button name="locker" class="btn btn-primary rounded-1 m-2" value="lock" script="on click remove #output">Lock Views</button>
+            <button name="locker" class="btn btn-primary rounded-1 m-2" value="unlock" script="on click remove #output">Unlock Views</button>
         </div>
         <div class="form-check">
             <input name="includeMainViewLock" value="True" class="form-check-input" type="checkbox" value="" id="includeMainViewLock">
@@ -55,8 +55,8 @@
 >
     <div class="col-12">
         <div class="input-group">
-            <button name="framer" class="btn btn-primary rounded-1 m-2" value="on">Frame On</button>
-            <button name="framer" class="btn btn-primary rounded-1 m-2" value="off">Frame Off</button>
+            <button name="framer" class="btn btn-primary rounded-1 m-2" value="on" script="on click remove #output">Frame On</button>
+            <button name="framer" class="btn btn-primary rounded-1 m-2" value="off" script="on click remove #output">Frame Off</button>
         </div>
     </div>
 </form>
@@ -65,4 +65,3 @@
 </div>
 
 {% endblock %}
-

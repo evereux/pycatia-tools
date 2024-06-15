@@ -19,9 +19,11 @@
         hx-swap="innerHtml"
 >
     <div class="text-center mt-2">
-        <button name="Create Bounding Box" class="btn btn-primary rounded-1" value="Create Bounding Box">Create Bounding Box</button>
+        <button name="Create Bounding Box" class="btn btn-primary rounded-1" value="Create Bounding Box" script="on click remove #output">Create Bounding Box</button>
     </div>
 </form>
-<div class="mt-2" id="bounding_box"></div>
+<div id="bounding_box">
+    {% include('partials/spinner.html') %}
+</div>
 
 {% endblock %}

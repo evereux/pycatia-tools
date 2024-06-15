@@ -1,6 +1,6 @@
 {% include('partials/spinner.html') %}
 
-<p class="alert alert-danger mt-2">
+<p class="alert alert-danger mt-2" id="output">
     {% for error in errors %}
     {{ error }}<br>
     {% endfor %}

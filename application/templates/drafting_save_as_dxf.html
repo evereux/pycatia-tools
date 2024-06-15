@@ -42,13 +42,11 @@
         </div>
     </div>
     <div class="text-center mt-2">
-        <button name="save_as" class="btn btn-primary rounded-1" value="save_as">Save As</button>
+        <button name="save_as" class="btn btn-primary rounded-1" value="save_as" script="on click remove #output">Save As</button>
     </div>
 </form>
 <div id="save_as">
     {% include('partials/spinner.html') %}
 </div>
 
-
 {% endblock %}
-
