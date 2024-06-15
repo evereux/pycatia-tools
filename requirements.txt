@@ -4,3 +4,4 @@ python-dotenv==1.0.1
 pycatia==0.7.1
 pywinauto==0.6.8
 pypdf==4.2.0
+pyyaml==6.0.1
