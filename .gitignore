@@ -161,6 +161,6 @@ cython_debug/
 
 __catia__files__
 ThePoints*
-test*.py
+test*.*
 build.bat
 pycatia-tools-exe*
