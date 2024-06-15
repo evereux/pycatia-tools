@@ -24,6 +24,10 @@ def htmx_attributes():
         product.revision = request.form.get('revision', type=str)
         product.definition = request.form.get('definition', type=str)
         product.nomenclature = request.form.get('nomenclature', type=str)
+        attributes['part_number'] = product.part_number
+        attributes['revision'] = product.revision
+        attributes['defintion'] = product.definition
+        attributes['nomenclature'] = product.nomenclature
 
     if not errors:
         return render_template('partials/product_attributes_div.html', attributes=attributes)
