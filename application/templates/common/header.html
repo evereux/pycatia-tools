@@ -1,3 +1,9 @@
+<!-- header.html -->
 <h1 class="pytitle text-center">
   pycatia-tools
 </h1>
+<div id="get_document" hx-get="/htmx/document/object" hx-target="#document_object" hx-swap="innerHtml" hx-trigger="load">
+  <div id="document_object">
+
+  </div>
+</div>
