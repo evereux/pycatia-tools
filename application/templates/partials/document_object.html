@@ -1,40 +1,41 @@
 <!-- document_object.html -->
  {% set pd_1="2px" %}
-<h4 class="text-center bg-info">Active Document</h3>
- {% if not document_type %}
- <p id="document_object" class="alert alert-warning">
-    No document open.
-</p>
- {% endif %}
+<div class="row">
+    <div class="col text-end">
+        Active Document
+
+    </div>
+    <div class="col">
+        <button name="refresh" class="btn btn-success rounded-1 btn-sm" style="padding: 3px;" value="refresh" hx-get="/htmx/document/object" hx-target="#document_object" hx-swap="innerHtml">update</button>
+    </div>
+</div>
+
+{% if not document_type %}
+    <p id="document_object" class="alert alert-danger text-center">
+        No document open.
+    </p>
+{% endif %}
+
  {% if document_type == "document" %}
-<table id="document_object" class="table table-bordered table-sm mb-1">
-    <thead>
-        <tr class="table-light">
-            <th class="small text-muted" style="width: 1px; white-space: nowrap; padding: {{ pd_1 }};">Part Number</th>
-            <th class="small text-muted" style="padding: {{ pd_1 }};">Title</th>
-            <th class="small text-muted" style="width: 1px; white-space: nowrap; padding: {{ pd_1 }};">Revision</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr class="table-info">
-            <td class="small" style="padding: {{ pd_1 }};">{{ document_object.part_number }}</td>
-            <td class="small" style="padding: {{ pd_1 }};">{{ document_object.nomenclature }}</td>
-            <td class="small text-center" style="padding: 1px;">{{ document_object.revision }}</td>
-        </tr>
-    </tbody>
-    <tr>
-        <td class="table-info small"  style="padding: {{ pd_1 }};" colspan="3">{{ document_object.full_name }}</td>
-    </tr>
-</table>
+     <div class="row border-bottom">
+         <div class="col text-muted fw-bold small border-end">Part Number</div>
+         <div class="col text-muted fw-bold small border-end">Title</div>
+         <div class="col-1 text-muted fw-bold small">Revision</div>
+     </div>
+     <div class="row border-bottom">
+         <div class="col border-end">{{ document_object.part_number }}</div>
+         <div class="col border-end">{{ document_object.nomenclature }}</div>
+         <div class="col-1">{{ document_object.revision }}</div>
+     </div>
+     <div class="row">
+        <div class="col-1 border-end text-muted fw-bold small align-content-center">Path</div>
+        <div class="col">{{ document_object.full_name }}</div>
+     </div>
 
  {% elif document_type == 'drawing' %}
- <table class="table table-sm">
-    <tr>
-        <th class="small text-muted" style="padding: {{ pd_1 }};">Path</th>
-        <td class="small" style="padding: {{ pd_1 }};">{{ document_object.full_name }}</td>
-    </tr>
-</table>
+     <div class="row border">
+         <div class="col-1 border-end text-muted fw-bold small">Path</div>
+         <div class="col">{{ document_object.full_name }}</div>
+     </div>
+
 {% endif %}
-<div class="text-center">
-    <button name="refresh" class="btn btn-info rounded-1 btn-sm" style="padding: 3px;" value="refresh" hx-get="/htmx/document/object" hx-target="#document_object" hx-swap="innerHtml">update</button>
-</div>

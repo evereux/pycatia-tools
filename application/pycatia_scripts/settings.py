@@ -18,8 +18,7 @@ def read_yaml(f: Path):
     return data
 
 
-# you probably wouldn't have to do this out of a development environment.
-path_prefix = Path(os.getcwd())
+path_prefix = Path(os.path.dirname(__file__)).parent.parent
 
 yaml_file = Path(path_prefix, 'settings.yaml')
 yaml_data = read_yaml(yaml_file)

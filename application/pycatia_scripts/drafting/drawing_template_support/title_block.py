@@ -325,7 +325,7 @@ def create_title_block(sheet: DrawingSheet,
         add_title_block_text(texts, text, text_x, text_y, size=2.2)
 
     # add the logo
-    logo = Path(path_prefix, 'application/pycatia_scripts/drafting/drawing_template_support/logo', drawing_template['logo'])
+    logo = Path(path_prefix, 'application/static/images', drawing_template['logo'])
     if not logo.is_file():
         raise CATIAApplicationException(f'Could not locate logo: "{logo}".')
     logo_x = v3["x"] + 12.5
