@@ -42,14 +42,11 @@ Installation
 Pre Built Binary
 ----------------
 
-Download the zip file from the windows_builds directory. Extract the folder and 
-double click on pycatia-tools.exe. 
+* Download the latest zip file from https://github.com/evereux/pycatia-tools/releases.
 
-Open a web browser and access the url https://127.0.1:5578
+* Unzip the package and run pycatia-tools.exe by double clicking on it.
 
-Please note, that until pycatia-tools is formally released the pre-built binary 
-may not always be upto date.
-
+* In your web browser access the page http://127.0.0.1:5578/ in your browser.
 
 git
 ---
