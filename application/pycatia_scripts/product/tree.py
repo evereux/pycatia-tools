@@ -74,7 +74,7 @@ def reorder_tree() -> bool:
     application.start_command(window_text['graph_tree_cmd'])
     # that's it for pycatia.
 
-    time.sleep(0.25)
+    time.sleep(1)
 
     windows = Desktop().windows()
 
