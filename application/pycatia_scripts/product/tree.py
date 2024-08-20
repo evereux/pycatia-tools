@@ -80,8 +80,11 @@ def reorder_tree() -> bool:
 
     graph_window = None
     for window in windows:
-        if window_text['graph_tree_window_name'] in window.window_text():
-            graph_window = window
+        try:
+            if window_text['graph_tree_window_name'] in window.window_text():
+                graph_window = window
+        except MemoryError:
+            raise MemoryError('Could not get window name. Try closing applications and re-running.')
 
     if not graph_window:
         raise AttributeError("Could not find Graph tree reordering window.")
