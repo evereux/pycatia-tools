@@ -7,7 +7,6 @@ from application.views.view_wrappers import catia_v5_required
 @app.route('/product')
 @catia_v5_required
 def product():
-
     return render_template(
         'product.html',
     )
@@ -16,7 +15,6 @@ def product():
 @app.route('/product/new')
 @catia_v5_required
 def product_new():
-
     return render_template(
         'product_new.html',
     )
@@ -25,16 +23,22 @@ def product_new():
 @app.route('/product/reorder')
 @catia_v5_required
 def product_reorder():
-
     return render_template(
         'product_reorder.html',
+    )
+
+
+@app.route('/product/renumber_instances')
+@catia_v5_required
+def product_renumber_instances():
+    return render_template(
+        'product_renumber_instances.html',
     )
 
 
 @app.route('/product/attributes')
 @catia_v5_required
 def product_attributes():
-
     pt_product_document, errors = get_product_document()
 
     if errors:

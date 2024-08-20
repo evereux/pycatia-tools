@@ -1,0 +1,29 @@
+{% extends 'common/base.html' %}
+
+{% block content %}
+<!-- product_reorder.html -->
+{{ render_menu('product')|safe }}
+
+<h1 class="text-center">Product Tools</h1>
+
+<h2 class="mt-3">Renumber Instances</h2>
+
+<p class="alert alert-info">
+    Renumbers the child instances of the currently open product.
+</p>
+
+<form
+        hx-post="/htmx/product/renumber_instances"
+        hx-target="#renumber_instances"
+        hx-swap="innerHtml"
+        hx-indicator="#renumber_instances"
+>
+        <div class="text-center mt-2">
+            <button name="Renumber Instances" class="btn btn-success rounded-1" value="Renumber Instances" script="on click remove #output">Renumber Instances</button>
+        </div>
+</form>
+<div id="renumber_instances">
+    {% include('partials/spinner.html') %}
+</div>
+
+{% endblock %}
