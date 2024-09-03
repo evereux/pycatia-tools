@@ -1,19 +1,15 @@
-from pywintypes import com_error
-
 from pycatia.drafting_interfaces.drawing_document import DrawingDocument
 from pycatia.drafting_interfaces.drawing_sheet import DrawingSheet
 from pycatia.drafting_interfaces.drawing_view import DrawingView
 
-from .background_view import get_background_view_and_factory
 
-
-def delete_all(drawing: DrawingDocument, sheet: DrawingSheet, query: str, type: str):
+def delete_all(drawing: DrawingDocument, sheet: DrawingSheet, query: str, type_: str):
     """
 
     :param drawing:
     :param sheet:
     :param query:
-    :param type:
+    :param type_:
     :return:
     """
 
@@ -26,10 +22,10 @@ def delete_all(drawing: DrawingDocument, sheet: DrawingSheet, query: str, type: 
     query = f'{query},sel'
     sel.search(query)
     if sel.count > 0:
-        print(f'Deleting {sel.count} {type} elements.')
+        print(f'Deleting {sel.count} {type_} elements.')
         sel.delete()
     else:
-        print('Couldn\'t find anything to delete.')
+        print('Could not find anything to delete.')
     sel.clear()
 
 

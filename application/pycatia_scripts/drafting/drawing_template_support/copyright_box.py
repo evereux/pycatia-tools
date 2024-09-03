@@ -40,7 +40,6 @@ def create_copyright_box(sheet: DrawingSheet, parameters: Parameters):
     update_line_properties([cbox_top_line, cbox_right_line], selection)
 
     datetime.datetime.now()
-    current_year = datetime.datetime.now().strftime('%Y')
 
     text_l1 = f"COPYRIGHT OF THIS DRAWING SPECIFICATION DOCUMENT, WHICH IS SUPPLIED"
     text_l2 = f"IN CONFIDENCE AND WHICH, WITHOUT THE EXPRESS WRITTEN CONSENT OF"
@@ -77,7 +76,7 @@ def create_copyright_box(sheet: DrawingSheet, parameters: Parameters):
     # set_text_properties(add_text, size=2)
 
     # link year to parameters
-    p_year = parameters.get_item(f'Drawing\YEAR')
+    p_year = parameters.get_item(fr'Drawing\YEAR')
     bottom_line = copyright_texts[0]
     bottom_line.insert_variable(32, 0, p_year)
     property_colour = cat_text_property.index('catColor')

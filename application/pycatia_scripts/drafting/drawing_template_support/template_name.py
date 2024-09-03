@@ -18,7 +18,6 @@ def create_template_name(sheet: DrawingSheet, size_info: dict):
     """
 
     sheet_x = size_info['sheet_x']
-    sheet_y = size_info['sheet_y']
 
     position_offset = 3
 

@@ -20,7 +20,6 @@ def update_line_properties(
     """
     selection.clear()
     for line in lines:
-        line.name = f'{line=}'.split('=')[0]
         selection.add(line)
     vp = selection.vis_properties
     vp.set_real_width(line_width, inheritance)

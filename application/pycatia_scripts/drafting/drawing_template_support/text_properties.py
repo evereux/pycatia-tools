@@ -23,8 +23,6 @@ def set_text_properties(text: DrawingText,
     text_properties.font_name = font
     text_properties.font_size = size
 
-    # drwText.SetParameterOnsubString catCharSpacing,0,0,25
-    # drwText.SetParameterOnsubString catCharRatio,0,0,55
     char_spacing = cat_text_property.index('catCharSpacing')
     char_test = cat_text_property.index('catParagraph')
     text.set_parameter_on_sub_string(char_spacing, 0, 0, 20)

@@ -7,6 +7,7 @@ from pycatia.drafting_interfaces.drawing_texts import DrawingTexts
 from pycatia.enumeration.enumeration_types import cat_text_anchor_position
 from pycatia.exception_handling.exceptions import CATIAApplicationException
 from pycatia.knowledge_interfaces.parameters import Parameters
+from pycatia.sketcher_interfaces.factory_2D import Factory2D
 
 from application.pycatia_scripts.settings import drawing_template
 from application.pycatia_scripts.settings import path_prefix
@@ -60,7 +61,7 @@ def add_param_text(texts: DrawingTexts,
     :return:
     """
 
-    p_ticket = parameters.get_item(f'Drawing\{param_variable}')
+    p_ticket = parameters.get_item(fr'Drawing\{param_variable}')
     param_text = add_title_block_text(texts, text, x, y, size=size)
     param_text.insert_variable(0, 0, p_ticket)
     # change text colour to blue
@@ -69,6 +70,22 @@ def add_param_text(texts: DrawingTexts,
     param_text.text_properties.color = colour
 
     return param_text
+
+
+def create_2d_line(factory_2d: Factory2D, name: str, x_1: float, y_1: float, x_2: float, y_2: float):
+    """
+
+    :param factory_2d:
+    :param name:
+    :param x_1:
+    :param y_1:
+    :param x_2:
+    :param y_2:
+    :return:
+    """
+    _line = factory_2d.create_line(x_1, y_1, x_2, y_2)
+    _line.name = 'line.' + name
+    return _line
 
 
 def create_title_block(sheet: DrawingSheet,
@@ -171,91 +188,69 @@ def create_title_block(sheet: DrawingSheet,
     lines = []
     # draw outer box lines
     # first vertical line, lhs
-    line_obfv_1 = factory_2d.create_line(v1['x'], v1['y_start'], v1['x'], v1['y_end'])
-    line_obfv_1.name = f'{line_obfv_1=}'.split('=')[0]
+    line_obfv_1 = create_2d_line(factory_2d, 'obfv_1', v1['x'], v1['y_start'], v1['x'], v1['y_end'])
     lines.append(line_obfv_1)
 
     # top horizontal line
-    line_obfh_1 = factory_2d.create_line(h5['x_start'], h5['y'], h5['x_end'], h5['y'])
-    line_obfh_1.name = f'{line_obfh_1=}'.split('=')[0]
+    line_obfh_1 = create_2d_line(factory_2d, 'obfh_1', h5['x_start'], h5['y'], h5['x_end'], h5['y'])
     lines.append(line_obfh_1)
 
     # internal full vertical lines
-    offset_from_first = 65
-    line_ifv_1 = factory_2d.create_line(v2['x'], v2['y_start'], v2['x'], v2['y_end'])
-    line_ifv_1.name = f'{line_ifv_1=}'.split('=')[0]
+    line_ifv_1 = create_2d_line(factory_2d, 'ifv_1', v2['x'], v2['y_start'], v2['x'], v2['y_end'])
     lines.append(line_ifv_1)
 
-    offset_from_first = offset_from_first + 73
-    line_ifv_2 = factory_2d.create_line(v3['x'], v3['y_start'], v3['x'], v3['y_end'])
-    line_ifv_2.name = f'{line_ifv_2=}'.split('=')[0]
+    line_ifv_2 = create_2d_line(factory_2d, 'ifv_2', v3['x'], v3['y_start'], v3['x'], v3['y_end'])
     lines.append(line_ifv_2)
 
     # internal full horizontal lines
-    line_ifh_1 = factory_2d.create_line(h1['x_start'], h1['y'], h1['x_end'], h1['y'])
-    line_ifh_1.name = f'{line_ifh_1=}'.split('=')[0]
+    line_ifh_1 = create_2d_line(factory_2d, 'ifh_1', h1['x_start'], h1['y'], h1['x_end'], h1['y'])
     lines.append(line_ifh_1)
 
-    line_ifh_2 = factory_2d.create_line(h2['x_start'], h2['y'], h2['x_end'], h2['y'])
-    line_ifh_2.name = f'{line_ifh_2=}'.split('=')[0]
+    line_ifh_2 = create_2d_line(factory_2d, 'ifh_2', h2['x_start'], h2['y'], h2['x_end'], h2['y'])
     lines.append(line_ifh_2)
 
-    line_ifh_3 = factory_2d.create_line(h3['x_start'], h3['y'], h3['x_end'], h3['y'])
-    line_ifh_3.name = f'{line_ifh_3=}'.split('=')[0]
+    line_ifh_3 = create_2d_line(factory_2d, 'ifh_3', h3['x_start'], h3['y'], h3['x_end'], h3['y'])
     lines.append(line_ifh_3)
 
-    line_ifh_4 = factory_2d.create_line(h4['x_start'], h4['y'], h4['x_end'], h4['y'])
-    line_ifh_4.name = f'{line_ifh_4=}'.split('=')[0]
+    line_ifh_4 = create_2d_line(factory_2d, 'ifh_4', h4['x_start'], h4['y'], h4['x_end'], h4['y'])
     lines.append(line_ifh_4)
 
     # create internal partial horizontal lines
-    line_iph_2_1 = factory_2d.create_line(h2_1['x_start'], h2_1["y"], h2_1['x_end'], h2_1["y"])
-    line_iph_2_1.name = f'{line_iph_2_1=}'.split('=')[0]
+    line_iph_2_1 = create_2d_line(factory_2d, 'iph_2_1', h2_1['x_start'], h2_1["y"], h2_1['x_end'], h2_1["y"])
     lines.append(line_iph_2_1)
 
-    line_iph_3_1 = factory_2d.create_line(h3_1['x_start'], h3_1["y"], h3_1['x_end'], h3_1["y"])
-    line_iph_3_1.name = f'{line_iph_3_1=}'.split('=')[0]
+    line_iph_3_1 = create_2d_line(factory_2d, 'iph_3_1', h3_1['x_start'], h3_1["y"], h3_1['x_end'], h3_1["y"])
     lines.append(line_iph_3_1)
 
-    line_iph_3_2 = factory_2d.create_line(h3_2['x_start'], h3_2["y"], h3_2['x_end'], h3_2["y"])
-    line_iph_3_2.name = f'{line_iph_3_2=}'.split('=')[0]
+    line_iph_3_2 = create_2d_line(factory_2d, '', h3_2['x_start'], h3_2["y"], h3_2['x_end'], h3_2["y"])
     lines.append(line_iph_3_2)
 
-    line_iph_3_3 = factory_2d.create_line(h3_3['x_start'], h3_3["y"], h3_3['x_end'], h3_3["y"])
-    line_iph_3_3.name = f'{line_iph_3_3=}'.split('=')[0]
+    line_iph_3_3 = create_2d_line(factory_2d, 'iph_3_3', h3_3['x_start'], h3_3["y"], h3_3['x_end'], h3_3["y"])
     lines.append(line_iph_3_3)
 
-    line_iph_4_1 = factory_2d.create_line(h4_1['x_start'], h4_1["y"], h4_1['x_end'], h4_1["y"])
-    line_iph_4_1.name = f'{line_iph_4_1=}'.split('=')[0]
+    line_iph_4_1 = create_2d_line(factory_2d, 'iph_4_1', h4_1['x_start'], h4_1["y"], h4_1['x_end'], h4_1["y"])
     lines.append(line_iph_4_1)
 
     # create the internal partial vertical lines
-    line_ipv_1_1 = factory_2d.create_line(v1_1['x'], v1_1['y_start'], v1_1['x'], v1_1['y_end'])
-    line_ipv_1_1.name = f'{line_ipv_1_1=}'.split('=')[0]
+    line_ipv_1_1 = create_2d_line(factory_2d, 'ipv_1_1', v1_1['x'], v1_1['y_start'], v1_1['x'], v1_1['y_end'])
     lines.append(line_ipv_1_1)
 
-    line_ipv_2_1 = factory_2d.create_line(v2_1['x'], v2_1['y_start'], v2_1['x'], v2_1['y_end'])
-    line_ipv_2_1.name = f'{line_ipv_2_1=}'.split('=')[0]
+    line_ipv_2_1 = create_2d_line(factory_2d, 'ipv_2_1', v2_1['x'], v2_1['y_start'], v2_1['x'], v2_1['y_end'])
     lines.append(line_ipv_2_1)
 
-    line_ipv_2_2 = factory_2d.create_line(v2_2['x'], v2_2['y_start'], v2_2['x'], v2_2['y_end'])
-    line_ipv_2_2.name = f'{line_ipv_2_2=}'.split('=')[0]
+    line_ipv_2_2 = create_2d_line(factory_2d, 'ipv_2_2', v2_2['x'], v2_2['y_start'], v2_2['x'], v2_2['y_end'])
     lines.append(line_ipv_2_2)
 
-    line_ipv_3_1 = factory_2d.create_line(v3_1['x'], v3_1['y_start'], v3_1['x'], v3_1['y_end'])
-    line_ipv_3_1.name = f'{line_ipv_3_1=}'.split('=')[0]
+    line_ipv_3_1 = create_2d_line(factory_2d, 'ipv_3_1', v3_1['x'], v3_1['y_start'], v3_1['x'], v3_1['y_end'])
     lines.append(line_ipv_3_1)
 
-    line_ipv_3_2 = factory_2d.create_line(v3_2['x'], v3_2['y_start'], v3_2['x'], v3_2['y_end'])
-    line_ipv_3_2.name = f'{line_ipv_3_2=}'.split('=')[0]
+    line_ipv_3_2 = create_2d_line(factory_2d, 'ipv_3_2', v3_2['x'], v3_2['y_start'], v3_2['x'], v3_2['y_end'])
     lines.append(line_ipv_3_2)
 
-    line_ipv_3_3 = factory_2d.create_line(v3_3['x'], v3_3['y_start'], v3_3['x'], v3_3['y_end'])
-    line_ipv_3_3.name = f'{line_ipv_3_3=}'.split('=')[0]
+    line_ipv_3_3 = create_2d_line(factory_2d, 'ipv_3_3', v3_3['x'], v3_3['y_start'], v3_3['x'], v3_3['y_end'])
     lines.append(line_ipv_3_3)
 
-    line_ipv_3_4 = factory_2d.create_line(v3_4['x'], v3_4['y_start'], v3_4['x'], v3_4['y_end'])
-    line_ipv_3_4.name = f'{line_ipv_3_4=}'.split('=')[0]
+    line_ipv_3_4 = create_2d_line(factory_2d, 'ipv_3_4', v3_4['x'], v3_4['y_start'], v3_4['x'], v3_4['y_end'])
     lines.append(line_ipv_3_4)
 
     update_line_properties(lines, selection)
@@ -336,41 +331,41 @@ def create_title_block(sheet: DrawingSheet,
     # units
     text_x = v2['x'] + text_x_offset
     text_y = h4_1['y'] + text_y_offset - 1
-    unit_text_1 = add_title_block_text(texts, 'UNLESS OTHERWISE SPECIFIED', text_x, text_y)
+    add_title_block_text(texts, 'UNLESS OTHERWISE SPECIFIED', text_x, text_y)
     text_y = h4['y'] + text_y_offset + 1
-    unit_text_1 = add_title_block_text(texts, f'DIMENSIONS ARE IN {drawing_template["units"][1]}', text_x, text_y)
+    add_title_block_text(texts, f'DIMENSIONS ARE IN {drawing_template["units"][1]}', text_x, text_y)
 
     # linear tolerances
     text_x = v2['x'] + text_x_offset
     text_y = h3_1['y'] + text_y_offset - 1
-    unit_text_1 = add_title_block_text(texts, f'{drawing_template["units"][0]} LINEAR', text_x, text_y)
+    add_title_block_text(texts, f'{drawing_template["units"][0]} LINEAR', text_x, text_y)
     text_y = h3['y'] + text_y_offset + 1
-    unit_text_1 = add_title_block_text(texts, 'TOLERANCES.', text_x, text_y)
+    add_title_block_text(texts, 'TOLERANCES.', text_x, text_y)
 
     # tolerances
     tol_1_text_key = ",X"
     text_x = v2_1['x'] + 3
     text_y = h3_3['y'] - .15
-    tol_1_text = add_title_block_text(texts, tol_1_text_key, text_x, text_y)
+    add_title_block_text(texts, tol_1_text_key, text_x, text_y)
     text_x = v2_2['x'] + 2.5
     tol_2_text_value = drawing_template['tolerances'][tol_1_text_key][1:]
-    tol_2_text = add_title_block_text(texts, tol_2_text_value, text_x, text_y)
+    add_title_block_text(texts, tol_2_text_value, text_x, text_y)
 
     tol_3_text_key = ",XX"
     text_x = v2_1['x'] + 3
     text_y = h3_2['y'] - .15
-    tol_3_text = add_title_block_text(texts, tol_3_text_key, text_x, text_y)
+    add_title_block_text(texts, tol_3_text_key, text_x, text_y)
     text_x = v2_2['x'] + 2.5
     tol_3_text_value = drawing_template['tolerances'][tol_3_text_key][1:]
-    tol_3_text = add_title_block_text(texts, tol_3_text_value, text_x, text_y)
+    add_title_block_text(texts, tol_3_text_value, text_x, text_y)
 
     tol_4_text_key = ",XXX"
     text_x = v2_1['x'] + 3
     text_y = h3['y'] - .15
-    tol_4_text = add_title_block_text(texts, tol_4_text_key, text_x, text_y)
+    add_title_block_text(texts, tol_4_text_key, text_x, text_y)
     text_x = v2_2['x'] + 2.5
     tol_4_text_value = drawing_template['tolerances'][tol_4_text_key][1:]
-    tol_3_text = add_title_block_text(texts, tol_4_text_value, text_x, text_y)
+    add_title_block_text(texts, tol_4_text_value, text_x, text_y)
 
     # add text input fields that are linked to a parameter
     add_param_text(texts, parameters, "TICKET", v1_1["x"] + text_x_offset, h4_1['y'] + text_y_offset)
