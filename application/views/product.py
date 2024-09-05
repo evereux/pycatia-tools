@@ -1,4 +1,5 @@
 from application import app
+from application.support.properties import get_properties
 from application.support.documents import get_product_document
 from application.support.template import render_template
 from application.views.view_wrappers import catia_v5_required
@@ -15,8 +16,14 @@ def product():
 @app.route('/product/new')
 @catia_v5_required
 def product_new():
+
+    default_properties = get_properties(None, 'default')
+    user_defined_properties = get_properties(None, 'user')
+
     return render_template(
         'product_new.html',
+        default_properties=default_properties,
+        user_defined_properties=user_defined_properties
     )
 
 
@@ -36,21 +43,21 @@ def product_renumber_instances():
     )
 
 
-@app.route('/product/attributes')
+@app.route('/product/properties')
 @catia_v5_required
-def product_attributes():
-    pt_product_document, errors = get_product_document()
+def product_properties():
+    pt_product_document, errors = get_product_document(product_only=False)
 
     if errors:
         return render_template('partials/errors.html', errors=errors)
 
     product = pt_product_document.product
 
-    attributes = {
-        'part_number': product.part_number,
-    }
+    default_properties = get_properties(product, 'default')
+    user_defined_properties = get_properties(product, 'user')
 
     return render_template(
-        'product_attributes.html',
-        attributes=attributes
+        'product_properties.html',
+        default_properties=default_properties,
+        user_defined_properties=user_defined_properties,
     )

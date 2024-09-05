@@ -39,8 +39,8 @@ with app.app_context():
                 'title': 'Renumber Instances'
             },
             {
-                'url': url_for('product_attributes'),
-                'title': 'Edit Product Attributes'
+                'url': url_for('product_properties'),
+                'title': 'Edit Product Properties'
             },
         ]
     }

@@ -77,10 +77,17 @@ part_template:
     InternalBendRadius:
       type: length
       value: 2
+product_template:
+  # user defined properties
+  user_ref_properties:
+    TITLE: ''
+    DRAWN BY: evereux
+    CHECKED BY: ''
+    DATE APPROVED: ''
 drafting:
   pdf:
     # list of strings, if exists in CATDrawing sheet names, that are excluded.
-    # For examples Sheet.Details or Details sheet names will be exluded.
+    # For examples Sheet.Details or Details sheet names will be excluded.
     exclude_sheets:
     - Details
     - DXF

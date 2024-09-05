@@ -20,31 +20,10 @@
         hx-swap="innerHtml"
         hx-indicator="#create_new"
 >
-<h3>Attributes</h3>
-    <div class="row mb-3">
-        <div class="col">
-            <label for="formPartNumber" class="form-label">part number</label>
-            <input name="part_number" type="text" class="form-control" id="formPartNumber" placeholder="L2000543-001">
+        <div class="mt-2" id="create_new">
+            {% include('partials/spinner.html') %}
+            {% include('partials/form_product_properties.html') %}
         </div>
-        <div class="col">
-            <label for="formRevision" class="form-label">revision</label>
-            <input name="revision" type="text" class="form-control" id="formRevision" placeholder="A">
-        </div>
-    </div>
-
-    <div class="row mb-3">
-        <div class="col">
-            <label for="formDefinition" class="form-label">definition</label>
-            <input name="definition" type="text" class="form-control" id="formDefinition" placeholder="MY DEFINITION IS THIS">
-        </div>
-        <div class="col">
-            <label for="formNomenclature" class="form-label">nomenclature</label>
-            <input name="nomenclature" type="text" class="form-control" id="formNomenclature" placeholder="THIS IS THE TITLE">
-        </div>
-    </div>
-    <div class="text-center mt-2">
-        <button name="Create Part" class="btn btn-success rounded-1" value="Create Part" script="on click remove #output">Create Part</button>
-    </div>
 </form>
 <div class="mt-2" id="create_new">
     {% include('partials/spinner.html') %}

@@ -31,6 +31,7 @@ class PTActiveDocument:
     def is_product_document(self):
         return is_type_document('.CATProduct', self.application)
 
+
 class PTProductDocument(PTActiveDocument):
 
     def __init__(self):

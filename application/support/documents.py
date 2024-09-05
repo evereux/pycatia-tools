@@ -38,16 +38,22 @@ def get_drawing_document() -> Tuple[PTDrawingDocument | None, List]:
     return pt_drawing_document, errors
 
 
-def get_product_document() -> Tuple[PTProductDocument | None, List]:
+def get_product_document(product_only: bool = True) -> Tuple[PTProductDocument | None, List]:
+    """
+
+    :param product_only:
+    :return:
+    """
     errors = []
     pt_product_document = None
     try:
         pt_product_document = PTProductDocument()
-        if not pt_product_document.is_product_document():
-            errors.append('The active document is not a CATProduct')
+        if product_only:
+            if not pt_product_document.is_product_document():
+                errors.append('The active document is not a CATProduct')
     except CATIAApplicationException:
         errors.append('No active document.')
     except AttributeError:
-        errors.append('No active document or active document is not a CATProduct.')
+        errors.append('No active document.')
 
     return pt_product_document, errors

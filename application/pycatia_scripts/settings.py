@@ -25,3 +25,4 @@ yaml_data = read_yaml(yaml_file)
 
 drawing_template = yaml_data['drawing_template']
 part_template = yaml_data['part_template']
+product_template = yaml_data['product_template']
