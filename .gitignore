@@ -165,3 +165,4 @@ test*.*
 build.bat
 pycatia-tools-exe*
 __reference__/
+tests/test_files/
