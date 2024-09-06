@@ -12,9 +12,10 @@ python library [pycatia](https://pycatia.readthedocs.io/en/latest/).
 The application contains a collection of tools to speed up common tasks. Such as:
 
 * Create new Part, Product or Drawing with additional details such as 
- Part Number, Revision, Nomenclature and Definition. Geemtric Set and Parameter
- values are created as defined in settings.yaml. To skip the creation replace the
- values with `None`.
+   * Part Number, Revision, Nomenclature and Definition
+   * User defined properties as defined in settings.yaml.
+   * Geometric Set and Parameter values are created as defined in settings.yaml. 
+     To skip the creation replace the values with `None`.
 * Import to CATPart or export from CATPart points using CSV files.
 * Create a bounding box around a part.
 * Lock / Unlock all views of a CATDrawing.
