@@ -5,3 +5,4 @@ pycatia==0.8.0
 pywinauto==0.6.8
 pypdf==4.2.0
 pyyaml==6.0.1
+natsort==8.4.0
