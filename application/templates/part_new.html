@@ -1,32 +1,33 @@
-{% extends 'common/base.html' %}
+{% extends 'base.html' %}
 
 {% block content %}
-<!-- {{ self._TemplateReference__context.name }} -->
-{{ render_menu('part')|safe }}
+    <!-- {{ self._TemplateReference__context.name }} -->
+    {{ render_menu('part')|safe }}
 
-<h2>Create New Part</h2>
+    <h2>Create New Part</h2>
 
-<p class="alert alert-info p-1">
-    Creates a new Part using the attributes submitted in the Form below.
-</p>
+    <p class="alert alert-info p-1">
+        Creates a new Part using the attributes submitted in the Form below.
+    </p>
 
-<p class="alert alert-info p-1">
-    New <span class="font-monospace">Geometrical Sets</span> and <span class="font-monospace">Parameters</span> will be created as defined in the <span class="font-monospace">settings.yaml</span> file.
-</p>
+    <p class="alert alert-info p-1">
+        New <span class="font-monospace">Geometrical Sets</span> and <span class="font-monospace">Parameters</span> will
+        be created as defined in the <span class="font-monospace">settings.yaml</span> file.
+    </p>
 
-<form
-        hx-post="/htmx/part/create_new"
-        hx-target="#create_new"
-        hx-swap="innerHtml"
-        hx-indicator="#create_new"
->
+    <form
+            hx-post="/htmx/part/create_new"
+            hx-target="#create_new"
+            hx-swap="innerHtml"
+            hx-indicator="#create_new"
+    >
         <div class="mt-2" id="create_new">
             {% include('partials/spinner.html') %}
             {% include('partials/form_product_properties.html') %}
         </div>
-</form>
-<div class="mt-2" id="create_new">
-    {% include('partials/spinner.html') %}
-</div>
+    </form>
+    <div class="mt-2" id="create_new">
+        {% include('partials/spinner.html') %}
+    </div>
 
 {% endblock %}

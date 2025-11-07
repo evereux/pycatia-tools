@@ -1,30 +1,32 @@
-{% extends 'common/base.html' %}
+{% extends 'base.html' %}
 
 {% block content %}
-<!-- {{ self._TemplateReference__context.name }} -->
-{{ render_menu('product')|safe }}
+    <!-- {{ self._TemplateReference__context.name }} -->
+    {{ render_menu('product')|safe }}
 
-<h1 class="text-center">Product Tools</h1>
+    <h1 class="text-center">Product Tools</h1>
 
-<h2 class="mt-3">Reorder Tree</h2>
+    <h2 class="mt-3">Reorder Tree</h2>
 
-<p class="alert alert-info">
-    Alphanumerically sorts Products within a Product. Only the top level and it's
-    first level children will be processed.
-</p>
+    <p class="alert alert-info">
+        Alphanumerically sorts Products within a Product. Only the top level and it's
+        first level children will be processed.
+    </p>
 
-<form
-        hx-post="/htmx/product/reorder_tree"
-        hx-target="#reorder_tree"
-        hx-swap="innerHtml"
-        hx-indicator="#reorder_tree"
->
+    <form
+            hx-post="/htmx/product/reorder_tree"
+            hx-target="#reorder_tree"
+            hx-swap="innerHtml"
+            hx-indicator="#reorder_tree"
+    >
         <div class="text-center mt-2">
-            <button name="ReOrder Tree" class="btn btn-success rounded-1" value="Reorder Tree" script="on click remove #output">Reorder Tree</button>
+            <button name="ReOrder Tree" class="btn btn-success rounded-1" value="Reorder Tree"
+                    script="on click remove #output">Reorder Tree
+            </button>
         </div>
-</form>
-<div id="reorder_tree">
-    {% include('partials/spinner.html') %}
-</div>
+    </form>
+    <div id="reorder_tree">
+        {% include('partials/spinner.html') %}
+    </div>
 
 {% endblock %}

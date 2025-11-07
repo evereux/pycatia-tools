@@ -3,7 +3,6 @@ import os
 
 from flask import Flask
 
-
 load_dotenv('.env')
 app = Flask(__name__)
 app.config.update(TEMPLATES_AUTO_RELOAD=True)
@@ -13,7 +12,11 @@ app.config['SERVER_NAME'] = os.getenv('SERVER_NAME')
 # this sets a 1MB file POST limit which higher than the default.
 app.config['MAX_CONTENT_LENGTH'] = 1024 * 1024
 
-from application.version import version
 from application import views
+from application.version import version
+from application.jinja2.menu import render_menu
 
-app.jinja_env.globals.update(version=version)
+app.jinja_env.globals.update(
+    version=version,
+    render_menu=render_menu,
+)

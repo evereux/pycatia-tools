@@ -1,4 +1,4 @@
-{% extends 'common/base.html' %}
+{% extends 'base.html' %}
 
 {% block content %}
     <!-- {{ self._TemplateReference__context.name }} -->
@@ -10,11 +10,11 @@
     </p>
 
     <form
-        hx-post="/htmx/product/properties"
-        hx-target="#update_properties"
-        hx-swap="innerHtml"
-        hx-indicator="#update_properties"
-        id="update_properties"
+            hx-post="/htmx/product/properties"
+            hx-target="#update_properties"
+            hx-swap="innerHtml"
+            hx-indicator="#update_properties"
+            id="update_properties"
     >
 
         <div class="mt-2" id="update_properties">

@@ -1,14 +1,12 @@
-from flask import request
+from flask import request, render_template
 
 from application import app
 from application.pycatia_scripts.drafting.drawing_template import insert_drawing_template
-from application.support.template import render_template
 from application.views.url_prefixes import htmx
 
 
 @app.route(f'{htmx}/drafting/template', methods=['POST'])
 def htmx_drafting_template():
-
     part_number = request.form.get('DRAWING-NUMBER', type=str) or False
     title = request.form.get('TITLE', type=str) or False
     drawn_by = request.form.get('DRAWN-BY', type=str) or False

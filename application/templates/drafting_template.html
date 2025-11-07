@@ -1,40 +1,41 @@
-{% extends 'common/base.html' %}
+{% extends 'base.html' %}
 
 {% block content %}
-<!-- {{ self._TemplateReference__context.name }} -->
-{{ render_menu('drafting')|safe }}
+    <!-- {{ self._TemplateReference__context.name }} -->
+    {{ render_menu('drafting')|safe }}
 
-<h2 class="mt-3">Insert Drawing Template</h2>
+    <h2 class="mt-3">Insert Drawing Template</h2>
 
-<p class="alert alert-info mt-2">
-    Insert the drawing template into the background view of the current active
-    CATDrawing.
-</p>
+    <p class="alert alert-info mt-2">
+        Insert the drawing template into the background view of the current active
+        CATDrawing.
+    </p>
 
-<div class="alert alert-warning mt-2">
-    <p>
-        All existing data in the background views will be deleted.
-    </p>
-    <p>
-        Template defaults can be changed by editing the settings.yaml file.
-    </p>
-    <p>
-        Currently only designed to work with metric sheet sizes
-        <span class="font-monospace">A0, A1, A2 and A3</span>.
-    </p>
-</div>
+    <div class="alert alert-warning mt-2">
+        <p>
+            All existing data in the background views will be deleted.
+        </p>
+        <p>
+            Template defaults can be changed by editing the settings.yaml file.
+        </p>
+        <p>
+            Currently only designed to work with metric sheet sizes
+            <span class="font-monospace">A0, A1, A2 and A3</span>.
+        </p>
+    </div>
 
     <form
             hx-post="/htmx/drafting/template"
             hx-target="#template"
             hx-swap="innerHtml"
             hx-indicator="#template"
-            >
+    >
 
         <div class="row mb-3">
             <div class="col">
                 <label for="formDrawingNumber" class="form-label">Drawing Number</label>
-                <input name="DRAWING-NUMBER" type="text" class="form-control" id="formDrawingNumber" value="{{ parameters['DRAWING-NUMBER'] }}">
+                <input name="DRAWING-NUMBER" type="text" class="form-control" id="formDrawingNumber"
+                       value="{{ parameters['DRAWING-NUMBER'] }}">
             </div>
             <div class="col">
                 <label for="formTitle" class="form-label">Title</label>
@@ -44,21 +45,25 @@
         <div class="row mb-3">
             <div class="col">
                 <label for="formDrawnBy" class="form-label">Drawn By</label>
-                <input name="DRAWN-BY" type="text" class="form-control" id="formDrawnBy" value="{{ parameters['DRAWN-BY'] }}">
+                <input name="DRAWN-BY" type="text" class="form-control" id="formDrawnBy"
+                       value="{{ parameters['DRAWN-BY'] }}">
             </div>
             <div class="col">
                 <label for="formRevision" class="form-label">Revision</label>
-                <input name="REVISION" type="text" class="form-control" id="formRevision" value="{{ parameters['REVISION'] }}">
+                <input name="REVISION" type="text" class="form-control" id="formRevision"
+                       value="{{ parameters['REVISION'] }}">
             </div>
         </div>
         <div class="text-center">
-            <button name="template" class="btn btn-success" value="template" script="on click remove #output">Insert Template</button>
+            <button name="template" class="btn btn-success" value="template" script="on click remove #output">Insert
+                Template
+            </button>
         </div>
     </form>
 
 
-<div id="template">
-    {% include('partials/spinner.html') %}
-</div>
+    <div id="template">
+        {% include('partials/spinner.html') %}
+    </div>
 
 {% endblock %}

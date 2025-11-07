@@ -1,15 +1,13 @@
-from flask import request
+from flask import request, render_template
 
 from application import app
 from application.support.documents import get_product_document
 from application.support.properties import update_properties, get_properties
-from application.support.template import render_template
 from application.views.url_prefixes import htmx
 
 
 @app.route(f'{htmx}/product/properties', methods=['POST'])
 def htmx_product_properties():
-
     pt_product_document, errors = get_product_document(product_only=False)
     product = pt_product_document.product
 

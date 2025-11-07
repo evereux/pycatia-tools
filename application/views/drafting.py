@@ -1,11 +1,11 @@
 from pathlib import Path
 
+from flask import render_template
+
 from application import app
-from application.support.template import render_template
 from application.views.view_wrappers import catia_v5_required
 from application.pycatia_scripts.settings import drawing_template
 from application.pycatia_scripts.settings import yaml_data
-from application.pycatia_scripts.the_document import PTDrawingDocument
 
 
 @app.route('/drafting')
@@ -33,6 +33,7 @@ def drafting_save_as():
         exclude_sheets=exclude_sheets,
     )
 
+
 @app.route('/drafting/save_as/pdf')
 @catia_v5_required
 def drafting_save_as_pdf():
@@ -41,6 +42,7 @@ def drafting_save_as_pdf():
         'drafting_save_as_pdf.html',
         exclude_sheets=exclude_sheets,
     )
+
 
 @app.route('/drafting/save_as/dxf')
 @catia_v5_required

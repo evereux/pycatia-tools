@@ -1,7 +1,6 @@
-from flask import request
+from flask import request, render_template
 
 from application import app
-from application.support.template import render_template
 from application.views.url_prefixes import htmx
 from application.pycatia_scripts.drafting.view_locking import view_locker
 

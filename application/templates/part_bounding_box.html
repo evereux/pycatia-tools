@@ -1,30 +1,32 @@
-{% extends 'common/base.html' %}
+{% extends 'base.html' %}
 
 {% block content %}
-<!-- {{ self._TemplateReference__context.name }} -->
-{{ render_menu('part')|safe }}
+    <!-- {{ self._TemplateReference__context.name }} -->
+    {{ render_menu('part')|safe }}
 
-<h2>Create Bounding Box</h2>
+    <h2>Create Bounding Box</h2>
 
-<p class="alert alert-info p-1">
-    Creates a Bounding Box in the <span class="fw-bold">active</span> Part.
-</p>
-<p class="alert alert-info p-1">
-    On pressing the button you will be prompted to select the reference axis
-    system and a face of the item to be bounded within CATIA V5.
-</p>
-<form
-        hx-post="/htmx/part/bounding_box"
-        hx-target="#bounding_box"
-        hx-swap="innerHtml"
-        hx-indicator="#bounding_box"
->
-    <div class="text-center mt-2">
-        <button name="Create Bounding Box" class="btn btn-success rounded-1" value="Create Bounding Box" script="on click remove #output">Create Bounding Box</button>
+    <p class="alert alert-info p-1">
+        Creates a Bounding Box in the <span class="fw-bold">active</span> Part.
+    </p>
+    <p class="alert alert-info p-1">
+        On pressing the button you will be prompted to select the reference axis
+        system and a face of the item to be bounded within CATIA V5.
+    </p>
+    <form
+            hx-post="/htmx/part/bounding_box"
+            hx-target="#bounding_box"
+            hx-swap="innerHtml"
+            hx-indicator="#bounding_box"
+    >
+        <div class="text-center mt-2">
+            <button name="Create Bounding Box" class="btn btn-success rounded-1" value="Create Bounding Box"
+                    script="on click remove #output">Create Bounding Box
+            </button>
+        </div>
+    </form>
+    <div id="bounding_box">
+        {% include('partials/spinner.html') %}
     </div>
-</form>
-<div id="bounding_box">
-    {% include('partials/spinner.html') %}
-</div>
 
 {% endblock %}

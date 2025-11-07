@@ -1,12 +1,12 @@
+from flask import render_template
+
 from application import app
 from application.pycatia_scripts.product.tree import reorder_tree
-from application.support.template import render_template
 from application.views.url_prefixes import htmx
 
 
 @app.route(f'{htmx}/product/reorder_tree', methods=['POST'])
 def htmx_reorder_tree():
-
     r = reorder_tree()
 
     if r:

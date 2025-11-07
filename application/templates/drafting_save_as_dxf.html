@@ -1,52 +1,56 @@
-{% extends 'common/base.html' %}
+{% extends 'base.html' %}
 
 {% block content %}
-<!-- {{ self._TemplateReference__context.name }} -->
+    <!-- {{ self._TemplateReference__context.name }} -->
 
-{{ render_menu('drafting')|safe }}
+    {{ render_menu('drafting')|safe }}
 
-{% include('partials/menu_drafting_save_as.html') %}
-<h2 class="mt-3">Save As DXF</h2>
-<p class="alert alert-info p-1">
-    Saves the active drawing into DXFs.
-</p>
-<ul class="alert alert-info">
-    <li>
-        Include Sheet Names Containing shall be a comma delimited list.
-        For example: "<span class="font-monospace">DXF</span>". Any sheet name 
-        not ontaining these words will then be omitted from the output.
-    </li>
-    <li>If target directory is not provided the DXFs will be placed on your desktop.</li>
-</ul>
+    {% include('partials/menu_drafting_save_as.html') %}
+    <h2 class="mt-3">Save As DXF</h2>
+    <p class="alert alert-info p-1">
+        Saves the active drawing into DXFs.
+    </p>
+    <ul class="alert alert-info">
+        <li>
+            Include Sheet Names Containing shall be a comma delimited list.
+            For example: "<span class="font-monospace">DXF</span>". Any sheet name
+            not ontaining these words will then be omitted from the output.
+        </li>
+        <li>If target directory is not provided the DXFs will be placed on your desktop.</li>
+    </ul>
 
-<ul class="alert alert-danger">
-    <li>If DXF already exists it will be overwritten.</li>
-</ul>
+    <ul class="alert alert-danger">
+        <li>If DXF already exists it will be overwritten.</li>
+    </ul>
 
-<form
-        class="row row-cols-lg-auto align-items-center"
-        hx-post="/htmx/drafting/save_as_dxf"
-        hx-target="#save_as"
-        hx-swap="innerHtml"
-        hx-indicator="#save_as"
->
-    <div class="row mt-2">
-        <div class="col">
-            <label for="formSheetInclude" class="form-label">Include Sheet Names Containing</label>
-            <input name="include_sheet" type="text" class="form-control" id="formSheetInclude" value="{{ include_sheets }}">
+    <form
+            class="row row-cols-lg-auto align-items-center"
+            hx-post="/htmx/drafting/save_as_dxf"
+            hx-target="#save_as"
+            hx-swap="innerHtml"
+            hx-indicator="#save_as"
+    >
+        <div class="row mt-2">
+            <div class="col">
+                <label for="formSheetInclude" class="form-label">Include Sheet Names Containing</label>
+                <input name="include_sheet" type="text" class="form-control" id="formSheetInclude"
+                       value="{{ include_sheets }}">
+            </div>
         </div>
-    </div>
         <div class="row mt-2">
             <label for="formTargetDirectory" class="form-label">Target directory</label>
-            <div id="document_path" hx-get="/htmx/document/path" hx-target="#document_path" hx-swap="innerHtml" hx-trigger="load">
+            <div id="document_path" hx-get="/htmx/document/path" hx-target="#document_path" hx-swap="innerHtml"
+                 hx-trigger="load">
+            </div>
         </div>
+        <div class="text-center mt-2">
+            <button name="save_as" class="btn btn-success rounded-1" value="save_as" script="on click remove #output">
+                Save As
+            </button>
+        </div>
+    </form>
+    <div id="save_as">
+        {% include('partials/spinner.html') %}
     </div>
-    <div class="text-center mt-2">
-        <button name="save_as" class="btn btn-success rounded-1" value="save_as" script="on click remove #output">Save As</button>
-    </div>
-</form>
-<div id="save_as">
-    {% include('partials/spinner.html') %}
-</div>
 
 {% endblock %}

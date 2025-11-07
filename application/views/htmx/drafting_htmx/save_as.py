@@ -1,7 +1,6 @@
-from flask import request
+from flask import request, render_template
 
 from application import app
-from application.support.template import render_template
 from application.views.url_prefixes import htmx
 from application.pycatia_scripts.drafting.save_drawing import save_as_dxf
 from application.pycatia_scripts.drafting.save_drawing import save_as_pdf
@@ -9,7 +8,6 @@ from application.pycatia_scripts.drafting.save_drawing import save_as_pdf
 
 @app.route(f'{htmx}/drafting/save_as_pdf', methods=['POST'])
 def htmx_drafting_save_as_pdf():
-
     exclude = request.form.get('exclude_sheet') or None
     target_directory = request.form.get('target_directory') or None
 
@@ -28,7 +26,6 @@ def htmx_drafting_save_as_pdf():
 
 @app.route(f'{htmx}/drafting/save_as_dxf', methods=['POST'])
 def htmx_drafting_save_as_dxf():
-
     include = request.form.get('include_sheet') or None
     target_directory = request.form.get('target_directory') or None
 

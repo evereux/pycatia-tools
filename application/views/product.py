@@ -1,7 +1,8 @@
+from flask import render_template
+
 from application import app
 from application.support.properties import get_properties
 from application.support.documents import get_product_document
-from application.support.template import render_template
 from application.views.view_wrappers import catia_v5_required
 
 
@@ -16,7 +17,6 @@ def product():
 @app.route('/product/new')
 @catia_v5_required
 def product_new():
-
     default_properties = get_properties(None, 'default')
     user_defined_properties = get_properties(None, 'user')
 

@@ -1,0 +1,8 @@
+<!-- {{ self._TemplateReference__context.name }} -->
+<h1 class="text-center">{{ m_dict['title'] }}</h1>
+
+<div class="text-center">
+    {%- for item in m_dict['menu_items'] -%}
+        <a class="btn btn-dark btn-sm border-white p-1 m-2" href="{{ item['url'] }}">{{ item['title'] }}</a>
+    {%- endfor -%}
+</div>

@@ -4,7 +4,6 @@ from flask import url_for
 from application import app
 
 with app.app_context():
-
     m_dict_part = {
         'title': 'Part Tools',
         'menu_items': [
@@ -65,7 +64,6 @@ with app.app_context():
 
 
 def render_menu(option: str):
-
     m_dict = None
 
     if option == 'part':
@@ -75,4 +73,4 @@ def render_menu(option: str):
     if option == 'drafting':
         m_dict = m_dict_drafting
 
-    return render_template('partials/menu.html', m_dict=m_dict)
+    return render_template('partials.menu.html', m_dict=m_dict)

@@ -1,15 +1,15 @@
-{% extends 'common/base.html' %}
+{% extends 'base.html' %}
 
 {% block content %}
-<!-- {{ self._TemplateReference__context.name }} -->
+    <!-- {{ self._TemplateReference__context.name }} -->
 
-{{ render_menu('drafting')|safe }}
+    {{ render_menu('drafting')|safe }}
 
-{% include('partials/menu_drafting_save_as.html') %}
-<h2>Save As</h2>
+    {% include('partials/menu_drafting_save_as.html') %}
+    <h2>Save As</h2>
 
-<p>
-    Select either PDF or DXF from optins above.
-</p>
+    <p>
+        Select either PDF or DXF from options above.
+    </p>
 
 {% endblock %}

@@ -1,16 +1,14 @@
-from flask import request
+from flask import request, render_template
 
 from application import app
 from application.pycatia_scripts.product.new_product import create_new_product
 from application.support.documents import get_product_document
 from application.support.properties import get_properties
-from application.support.template import render_template
 from application.views.url_prefixes import htmx
 
 
 @app.route(f'{htmx}/product/create_new', methods=['POST'])
 def htmx_create_new_product():
-
     output = create_new_product(request.form)
     data = output['data']
     errors = output['errors']
