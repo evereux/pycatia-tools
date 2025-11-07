@@ -1,6 +1,7 @@
 import time
 from typing import Optional
 
+from natsort import natsorted
 from pywinauto import Desktop
 from pywinauto.controls.win32_controls import ButtonWrapper
 from pywinauto.controls.win32_controls import ListBoxWrapper
@@ -117,7 +118,7 @@ def reorder_tree() -> bool:
     tree_items = []
     for text in list_box.item_texts():
         tree_items.append(text)
-    tree_items.sort()
+    tree_items = natsorted(tree_items)
 
     # reorder the items in the tree
     for i, value in enumerate(tree_items):
