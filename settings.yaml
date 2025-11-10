@@ -81,9 +81,10 @@ product_template:
   # user defined properties
   user_ref_properties:
     TITLE: ''
-    DRAWN BY: evereux
+    DRAWN BY: 'evereux'
     CHECKED BY: ''
     DATE APPROVED: ''
+    REVISION: 'A'
 drafting:
   pdf:
     # list of strings, if exists in CATDrawing sheet names, that are excluded.
