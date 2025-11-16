@@ -1,19 +1,12 @@
 <div class="row">
-    <div class="col-sm-8">
-        <a class="btn btn-dark btn-sm border-white p-1 m-2" href="{{ url_for('index') }}">
-            Home
-        </a>
-        <a class="btn btn-dark btn-sm border-white p-1 m-2" href="{{ url_for('product') }}">
-            Product
-        </a>
-        <a class="btn btn-dark btn-sm border-white p-1 m-2" href="{{ url_for('part') }}">
-            Part
-        </a>
-        <a class="btn btn-dark btn-sm border-white p-1 m-2" href="{{ url_for('drafting') }}">
-            Drafting
-        </a>
+    <div class="col-sm-9">
+        {% for item in m_list %}
+            <a class="btn btn-dark btn-sm border-white p-1 m-2" href={{ item['url'] }}>
+                {{ item['title'] }}
+            </a>
+        {% endfor %}
     </div>
-    <div class="col-3 text-right">
-        <h3>pycatia-tools</h3>
+    <div class="col-3 text-end h3">
+        pycatia-tools
     </div>
 </div>

@@ -20,7 +20,8 @@
 </head>
 <body>
 <div class="container">
-    {% include('partials.menu_header.html') %}
+
+    {{ render_menu_header()|safe }}
 
     {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}

@@ -1,0 +1,61 @@
+{% set sort_button = "btn btn-light btn-sm p-1 pt-0 pb-0" %}
+
+{% extends 'base.html' %}
+
+{% block content %}
+    <!-- {{ self._TemplateReference__context.name }} -->
+    <h1 class="">Documents</h1>
+    <p class="alert alert-warning">
+        Before saving please refresh the page to get the latest document status. Still under testing so use with
+        caution.
+    </p>
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        <div class="row mb-1">
+            <div class="col-sm-10"></div>
+            <div class="col-sm-2 text-right">
+                <a class="btn btn-primary btn-sm rounded-0"
+                   href="{{ url_for('documents', **request.args) }}">Refresh</a>
+                {{ form.save() }}
+            </div>
+        </div>
+
+        <div class="row mb-1">
+            <div class="col-sm-3">
+                Filename
+                <a class="{{ sort_button }}"
+                   href="{{ url_for('documents', sort_key='filename', reverse=False) }}">&#8593;</a>
+                <a class="{{ sort_button }}" href="{{ url_for('documents', sort_key='filename', reverse=True) }}">&#8595;</a>
+            </div>
+            <div class="col-sm-6">
+                Path
+                <a class="{{ sort_button }}"
+                   href="{{ url_for('documents', sort_key='path', reverse=False) }}">&#8593;</a>
+                <a class="{{ sort_button }}"
+                   href="{{ url_for('documents', sort_key='path', reverse=True) }}">&#8595;</a>
+            </div>
+            <div class="col-sm-2 text-center">
+                Saved
+                <a class="{{ sort_button }}"
+                   href="{{ url_for('documents', sort_key='saved', reverse=False) }}">&#8595;</a>
+                <a class="{{ sort_button }}"
+                   href="{{ url_for('documents', sort_key='saved', reverse=True) }}">&#8593;</a>
+            </div>
+            <div class="col-sm-1">
+                Save
+            </div>
+        </div>
+
+
+        {% for form_row in form.documents %}
+            <div class="row pb-1">
+                <div class="col-sm-3">{{ form_row.filename() }}</div>
+                <div class="col-sm-6">{{ form_row.path() }}</div>
+                <div class="col-sm-2">{{ form_row.saved() }}</div>
+                <div class="col-sm-1 align-content-center">{{ form_row.save() }}</div>
+            </div>
+        {% endfor %}
+
+    </form>
+
+{% endblock %}
