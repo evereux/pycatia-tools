@@ -14,11 +14,11 @@ def documents():
     sort_key = request.args.get('sort_key')
     reverse = request.args.get('reverse', default=False, type=is_it_true)
 
-    documents = get_documents(sort_key=sort_key, reverse=reverse)
+    documents, counter = get_documents(sort_key=sort_key, reverse=reverse)
     form = FormDocumentSave(documents=documents)
 
     if form.validate_on_submit():
         save_documents(form)
         return redirect(url_for('documents'))
 
-    return render_template('documents.html', documents=documents, form=form)
+    return render_template('documents.html', documents=documents, form=form, counter=counter)

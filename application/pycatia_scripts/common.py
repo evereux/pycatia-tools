@@ -39,11 +39,15 @@ def check_part_number_exists(documents: Documents, output: dict, part_number: st
     return output
 
 
-def get_documents(sort_key: str = None, reverse: bool = False):
+def get_documents(sort_key: str = None, reverse: bool = False) -> tuple[list, dict]:
     application = get_app_object()
     documents = application.documents
 
     d_list = []
+
+    total_docs = 0
+    total_not_saved = 0
+
 
     for document in documents:
         d = {
@@ -53,10 +57,19 @@ def get_documents(sort_key: str = None, reverse: bool = False):
         }
         d_list.append(d)
 
+        total_docs += 1
+        if not document.is_saved:
+            total_not_saved += 1
+
+    counter = {
+        'total_docs': total_docs,
+        'not_saved': total_not_saved,
+    }
+
     if sort_key:
         d_list = sorted(d_list, key=itemgetter(sort_key), reverse=reverse)
 
-    return d_list
+    return d_list, counter
 
 
 def save_documents(form: FormDocumentSave):

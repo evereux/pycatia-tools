@@ -9,6 +9,14 @@
         Before saving please refresh the page to get the latest document status. Still under testing so use with
         caution.
     </p>
+    <div class="row justify-content-center">
+        <div class="col-2">
+            Total Documents: <button class="btn btn-info btn-sm">{{ counter['total_docs'] }}</button>
+        </div>
+        <div class="col-2">
+            Not Saved: <button class="btn btn-info btn-sm">{{ counter['not_saved'] }}</button>
+        </div>
+    </div>
     <form method="POST">
         {{ form.hidden_tag() }}
         <div class="row mb-1">
