@@ -5,7 +5,7 @@
 
     {{ render_menu('drafting')|safe }}
 
-    {% include('partials/partials.menu_drafting_save_as.html') %}
+    {% include('partials.menu_drafting_save_as.html') %}
     <h2 class="mt-3">Save As DXF</h2>
     <p class="alert alert-info p-1">
         Saves the active drawing into DXFs.
@@ -33,7 +33,7 @@
         <div class="row mt-2">
             <div class="col">
                 <label for="formSheetInclude" class="form-label">Include Sheet Names Containing</label>
-                <input name="include_sheet" type="text" class="form-control" id="formSheetInclude"
+                <input name="include_sheet" type="text" class="form-control rounded-0" id="formSheetInclude"
                        value="{{ include_sheets }}">
             </div>
         </div>
