@@ -1,7 +1,11 @@
 <div class="row">
     <div class="col-sm-9">
-        {% for item in m_list %}
-            <a class="btn btn-dark btn-sm border-white p-1 m-1" href={{ item['url'] }}>
+       {% for item in m_list %}
+            {% set cls_active = '' %}
+            {% if item['title'].lower() in request.url %}
+            {% set cls_active = 'active' %}
+            {% endif %}
+            <a class="btn btn-dark btn-sm border-white p-1 m-1 rounded-0 {{ cls_active }}" href={{ item['url'] }}>
                 {{ item['title'] }}
             </a>
         {% endfor %}

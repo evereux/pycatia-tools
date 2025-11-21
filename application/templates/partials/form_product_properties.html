@@ -4,7 +4,7 @@
 {% for default_property in default_properties  %}
     <div class="col-6">
         <label for="form{{ default_property }}" class="form-label">{{ default_property }}</label>
-        <input name="{{ default_property }}" type="text" class="form-control" id="form{{ default_property }}"
+        <input name="{{ default_property }}" type="text" class="form-control rounded-0" id="form{{ default_property }}"
         value="{{ default_properties[default_property] }}">
     </div>
 {% endfor %}
@@ -15,14 +15,14 @@
 {% for user_defined_property in user_defined_properties  %}
     <div class="col-6">
         <label for="form{{ user_defined_property }}" class="form-label">{{ user_defined_property }}</label>
-        <input name="{{ user_defined_property }}" type="text" class="form-control" id="form{{ user_defined_property }}"
+        <input name="{{ user_defined_property }}" type="text" class="form-control rounded-0" id="form{{ user_defined_property }}"
         value="{{ user_defined_properties[user_defined_property] }}">
     </div>
 {% endfor %}
 </div>
 
 <div class="text-center mt-2">
-    <button name="submit" class="btn btn-success rounded-1" value="submit">Submit</button>
+    <button name="submit" class="btn btn-success rounded-0" value="submit">Submit</button>
 </div>
 
 {% if data %}

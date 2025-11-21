@@ -5,7 +5,7 @@
 
     {{ render_menu('drafting')|safe }}
 
-    {% include('partials/menu_drafting_save_as.html') %}
+    {% include('partials/partials.menu_drafting_save_as.html') %}
     <h2 class="mt-3">Save As DXF</h2>
     <p class="alert alert-info p-1">
         Saves the active drawing into DXFs.
@@ -44,7 +44,7 @@
             </div>
         </div>
         <div class="text-center mt-2">
-            <button name="save_as" class="btn btn-success rounded-1" value="save_as" script="on click remove #output">
+            <button name="save_as" class="btn btn-success rounded-0" value="save_as" script="on click remove #output">
                 Save As
             </button>
         </div>
