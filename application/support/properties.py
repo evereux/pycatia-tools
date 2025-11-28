@@ -1,6 +1,7 @@
 from pycatia.exception_handling import CATIAApplicationException
 from pycatia.product_structure_interfaces.product import Product
 from werkzeug.datastructures import ImmutableMultiDict
+from win32.lib.pywintypes import com_error
 
 from application.pycatia_scripts.settings import product_template
 
@@ -62,6 +63,7 @@ def update_properties(product: Product, form: ImmutableMultiDict):
     """
 
     for key in form.keys():
+        print(key)
         if key in default_property_list:
             setattr(product, key, form.get(key))
         if key in user_defined_property_list:
@@ -71,6 +73,9 @@ def update_properties(product: Product, form: ImmutableMultiDict):
                 user_ref_property.value = form.get(key)
             except CATIAApplicationException:
                 user_ref_properties.create_string(key, form.get(key))
+            except com_error:
+                user_ref_properties.create_string(key, form.get(key))
+
 
 
 
