@@ -33,7 +33,7 @@ def insert_drawing_template(form_parameters):
     sheet_number = 1
     for sheet in sheets:
         statement = f'Processing sheet: {sheet.name}'
-        print('='*len(statement) + '\n' + statement + '\n' + '='*len(statement))
+        # print('='*len(statement) + '\n' + statement + '\n' + '='*len(statement))
         size_info = get_sheet_size_info(sheet)
 
         # !! delete everything in the background view!!

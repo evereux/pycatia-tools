@@ -21,11 +21,11 @@ def delete_all(drawing: DrawingDocument, sheet: DrawingSheet, query: str, type_:
     sel.add(background_view)
     query = f'{query},sel'
     sel.search(query)
-    if sel.count > 0:
-        print(f'Deleting {sel.count} {type_} elements.')
-        sel.delete()
-    else:
-        print('Could not find anything to delete.')
+    # if sel.count > 0:
+    #     print(f'Deleting {sel.count} {type_} elements.')
+    #     sel.delete()
+    # else:
+    #     print('Could not find anything to delete.')
     sel.clear()
 
 

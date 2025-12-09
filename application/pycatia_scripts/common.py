@@ -80,7 +80,6 @@ def save_documents(form: FormDocumentSave):
             documents = application.documents
 
             document = documents.item(form_document.filename.data)
-            print(document)
 
             if not document.is_saved:
                 document.save()

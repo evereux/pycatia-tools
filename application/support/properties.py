@@ -63,7 +63,6 @@ def update_properties(product: Product, form: ImmutableMultiDict):
     """
 
     for key in form.keys():
-        print(key)
         if key in default_property_list:
             setattr(product, key, form.get(key))
         if key in user_defined_property_list:
